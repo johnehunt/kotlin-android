@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Counter</string>
+    <string name="total">Total:</string>
+    <string name="subtract">Subtract</string>
+    <string name="add">Add</string>
+    <string name="show">Show</string>
+    <string name="show_dialog">Show Dialog</string>
+    <string name="message">Message</string>
+    <string name="show_date_picker">Show Date Picker</string>
+    <string name="show_time_picker">Show Time Picker</string>
+</resources>
