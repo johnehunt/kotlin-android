@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FragmentDemo</string>
+    <string name="last_time">Last Time</string>
+</resources>
