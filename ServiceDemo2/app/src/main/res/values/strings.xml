@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ServiceDemo2</string>
+    <string name="app_name">SampleBroadcastReceiver</string>
     <string name="ready">Ready!</string>
     <string name="stop_service">Stop Service</string>
     <string name="start_service">Start Service</string>

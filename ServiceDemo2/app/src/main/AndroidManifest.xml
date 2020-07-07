@@ -28,7 +28,7 @@
         <receiver android:name=".SampleBroadcastReceiver" android:exported="true">
             <intent-filter>
                 <!-- The actions you wish to listen to, below is an example -->
-                <action android:name = "com.jjh.servicedemo.Message" />
+                <action android:name = "com.jjh.android.servicedemo.Message" />
             </intent-filter>
         </receiver>
     </application>

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         // Required as of Android 8.0 (and above) since this version
         // most implicit broadcasts need to be registered to dynamically
         // and not statically (in the manifest).
-        val filter = IntentFilter("com.jjh.servicedemo.Message")
+        val filter = IntentFilter("com.jjh.android.servicedemo.Message")
         val receiver = SampleBroadcastReceiver()
         registerReceiver(receiver, filter, null, null)
         Log.d("SD - MainActivity", "onCreate()")

@@ -6,7 +6,9 @@ import android.os.IBinder
 import android.util.Log
 
 class SampleService2 : Service() {
+
     private var isRunning = true
+
     override fun onBind(arg0: Intent): IBinder? {
         return null
     }
@@ -32,7 +34,7 @@ class SampleService2 : Service() {
                 try {
                     // Broadcast the message
                     Log.d("SD - Broadcaster", "Broadcasting Message")
-                    val intent = Intent("com.jjh.servicedemo.Message")
+                    val intent = Intent("com.jjh.android.servicedemo.Message")
                     val msg = "Hello $i"
                     intent.putExtra("serviceData", msg)
                     sendBroadcast(intent)

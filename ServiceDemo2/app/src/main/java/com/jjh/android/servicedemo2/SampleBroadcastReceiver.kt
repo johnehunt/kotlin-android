@@ -7,8 +7,10 @@ import android.util.Log
 import android.widget.Toast
 
 class SampleBroadcastReceiver : BroadcastReceiver() {
+
     // onReceive method runs on the main thread, and because of this,
     // its execution should be brief
+
     override fun onReceive(context: Context, intent: Intent) {
         val serviceData = intent.getStringExtra("serviceData")
         Log.d(
@@ -17,4 +19,5 @@ class SampleBroadcastReceiver : BroadcastReceiver() {
         )
         Toast.makeText(context, serviceData, Toast.LENGTH_LONG).show()
     }
+
 }
