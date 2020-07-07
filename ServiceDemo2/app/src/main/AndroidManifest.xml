@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jjh.android.servicedemo2">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".SampleService2">
+        </service>
+
+        <!-- Not used pre 8.0 - since this version
+             most implicit broadcasts need to be registered to dynamically
+             and not statically (in the manifest). -->
+        <!-- exported attribute tells the receiver that it can receive broadcasts
+             from outside the scope of the application -->
+        <receiver android:name=".SampleBroadcastReceiver" android:exported="true">
+            <intent-filter>
+                <!-- The actions you wish to listen to, below is an example -->
+                <action android:name = "com.jjh.servicedemo.Message" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
