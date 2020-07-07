@@ -26,7 +26,7 @@
         android:id="@+id/loadButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="loadButtonHandlerk"
+        android:onClick="loadButtonHandler"
         android:text="Load" />
 
     <Button

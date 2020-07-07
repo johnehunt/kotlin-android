@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         saveText()
     }
 
-    fun loadButtonHandlerk(v: View) {
+    fun loadButtonHandler(v: View) {
         loadText()
     }
 
