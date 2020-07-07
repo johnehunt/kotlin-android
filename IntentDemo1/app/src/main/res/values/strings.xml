@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IntentsDemo1</string>
+    <string name="welcome">Welcome</string>
+    <string name="tel_01225_987987">tel:01225 987987</string>
+    <string name="make_phone_call">Make Phone Call</string>
+    <string name="search">Search</string>
+</resources>
