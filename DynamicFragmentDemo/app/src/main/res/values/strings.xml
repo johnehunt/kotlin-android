@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DynamicFragmentDemo</string>
+    <string name="fragment_one_view">Fragment One View</string>
+    <string name="fragment_two_view">Fragment Two View</string>
+    <string name="show_fragment_one">Show Fragment One</string>
+    <string name="show_fragment_two">Show Fragment Two</string>
+</resources>
