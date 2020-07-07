@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">IntentsDemo2</string>
+    <string name="prompt">No Selection</string>
+    <string name="content_contacts_people">content://contacts/people/</string>
+    <string name="pick_a_contact">Pick a Contact</string>
+</resources>

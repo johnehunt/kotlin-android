@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0000cc"
+        android:text="@string/prompt"
+        android:textColor="#FBFBFB"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="25dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/content_contacts_people"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/pickContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onPickContactClick"
+        android:text="@string/pick_a_contact"
+        android:textStyle="bold" />
+
+</LinearLayout>
