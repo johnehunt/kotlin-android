@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">IntentDemo3</string>
+    <string name="data_returned_by_sub_activity">Data returned by Sub-Activity</string>
+    <string name="hello">Hello</string>
+    <string name="invoke_sub_activity">Invoke Sub-Activity</string>
+    <string name="name">Your Name</string>
+    <string name="message_to_send">Send Response</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0033cc"
+        android:text="@string/hello"
+        android:textColor="#FAFAFA"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onClickInvokeSubActivity"
+        android:text="@string/invoke_sub_activity"
+        android:textColor="#F60202"
+        android:textColorHighlight="#0206F6"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0033cc"
+        android:text="@string/data_returned_by_sub_activity"
+        android:textColor="#FAFAFA"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
