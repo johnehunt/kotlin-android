@@ -10,6 +10,10 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var userGuessEditText: EditText? = null
+    private var numberToGuess: Int
+    private val rand = Random()
+
     companion object {
         private const val MAX_NUMBER = 10
         private const val CORRECT_MSG = "You guessed correctly! The number was "
@@ -19,10 +23,6 @@ class MainActivity : AppCompatActivity() {
         private const val LOWER_MSG = "The correct answer is lower"
     }
 
-    private var userGuessEditText: EditText? = null
-    private var numberToGuess: Int
-    private val rand = Random()
-
     init {
         numberToGuess = generateRandomNumber()
     }
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        userGuessEditText = findViewById(R.id.guessEditText)
+        userGuessEditText = findViewById<EditText>(R.id.guessEditText)
         val title = findViewById<TextView>(R.id.title)
         title.text = title.text.toString() + MAX_NUMBER
     }
@@ -69,9 +69,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayCorrectAnswerToast() {
-        Toast.makeText(this,
-            CORRECT_MSG + numberToGuess,
-            Toast.LENGTH_LONG).show()
+        Toast.makeText(this, CORRECT_MSG + numberToGuess, Toast.LENGTH_LONG)
+            .show()
     }
 
     private fun displayInvalidUserInputToast() {
@@ -80,7 +79,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayHintToast(higher: Boolean) {
         var message = HIGHER_MSG
-        if (higher) { message = LOWER_MSG }
+        if (higher) {
+            message = LOWER_MSG
+        }
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
