@@ -8,61 +8,65 @@ import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // lifecycle.addObserver(MyLifecycleObserver())
 
-        Log.d("MainActivity Lifecycle", "onCreate()")
+        Log.d(TAG, "onCreate()")
 
         savedInstanceState?.let {
             val msg = it.getString("msg")
-            Log.d("MainActivity Lifecycle", "onCreate() - $msg")
+            Log.d(TAG, "onCreate() - $msg")
         }
     }
 
     // Restoring / Saving Dynamic State
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        Log.d("MainActivity Lifecycle", "onRestoreInstanceState()")
+        Log.d(TAG, "onRestoreInstanceState()")
         val msg = savedInstanceState.getString("msg")
-        Log.d("MainActivity Lifecycle", "onRestoreInstanceState() - $msg")
+        Log.d(TAG, "onRestoreInstanceState() - $msg")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("msg", "Hello Message " + Date())
-        Log.d("MainActivity Lifecycle", "onSaveInstanceState()")
+        Log.d(TAG, "onSaveInstanceState()")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d("MainActivity Lifecycle", "onStart()")
+        Log.d(TAG, "onStart()")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("MainActivity Lifecycle", "onResume()")
+        Log.d(TAG, "onResume()")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("MainActivity Lifecycle", "onPause()")
+        Log.d(TAG, "onPause()")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("MainActivity Lifecycle", "onStop()")
+        Log.d(TAG, "onStop()")
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.d("MainActivity Lifecycle", "onRestart()")
+        Log.d(TAG, "onRestart()")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("MainActivity Lifecycle", "onDestroy()")
+        Log.d(TAG, "onDestroy()")
     }
 }
