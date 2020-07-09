@@ -36,9 +36,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(51.4545, -2.5879)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        //val latAndLong = LatLng(-33.852, 151.211)
+        val latAndLong = LatLng(51.5074, 0.1278)
+        mMap.addMarker(MarkerOptions()
+            .position(latAndLong)
+            .title("Marker in London")
+            .snippet("Capital City of UK"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latAndLong))
+        mMap.animateCamera(CameraUpdateFactory.zoomIn())
+
+        // Construct a CameraPosition focusing on Mountain View and animate the camera to that position.
+//        val cameraPosition = CameraPosition.Builder()
+//            .target(MOUNTAIN_VIEW) // Sets the center of the map to Mountain View
+//            .zoom(17f) // Sets the zoom
+//            .bearing(90f) // Sets the orientation of the camera to east
+//            .tilt(30f) // Sets the tilt of the camera to 30 degrees
+//            .build() // Creates a CameraPosition from the builder
+
 
     }
 }
