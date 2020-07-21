@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-
 class MainActivity : AppCompatActivity() {
 
     companion object {
