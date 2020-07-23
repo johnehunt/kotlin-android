@@ -8,12 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.jjh.android.restfulappdemo.model.Person
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-
-import java.io.IOException
-import java.io.InputStream
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         // as the Emulator is running a Virtual Machine where localhost
         // is the mobile device
         private const val URL = "http://10.0.2.2:8080/users"
+        private val GSON = Gson()
     }
 
     private lateinit var textView: TextView
@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate")
+
         setContentView(R.layout.activity_main)
 
         textView = findViewById(R.id.textView)
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
+        Log.d(TAG, "onClick")
         val b: Button = view as Button
         b.isClickable = false
         GetRequestAsyncTask().execute()
@@ -48,11 +51,11 @@ class MainActivity : AppCompatActivity() {
     inner class GetRequestAsyncTask: AsyncTask<Void, Void, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
-            Log.d(TAG, "onPreExecute")
+            Log.d(TAG, "GetRequestAsyncTask.onPreExecute")
         }
 
         override fun doInBackground(vararg params: Void?): String {
-            Log.d(TAG, "doInBackground")
+            Log.d(TAG, "GetRequestAsyncTask.doInBackground")
             val client = OkHttpClient()
 
             val request: Request = Request.Builder()
@@ -62,18 +65,31 @@ class MainActivity : AppCompatActivity() {
 
             return try {
                 val response: Response = client.newCall(request).execute()
-                val body = response.body?.string() + ""
-                body
+                val body = response.body?.string()
+                body ?: ""
             } catch (e: Exception) {
                 e.localizedMessage
             }
         }
 
-        override fun onPostExecute(result: String?) {
-            Log.d(TAG, "onPostExecute")
+        override fun onPostExecute(result: String) {
+            Log.d(TAG, "GetRequestAsyncTask.onPostExecute")
             super.onPostExecute(result)
-            result?.apply {
+            result.apply {
                 editText.setText(this)
+
+                // Example fo converting JSON to an object
+                val persons: List<Person> =
+                    GSON.fromJson(
+                    this,
+                        Array<Person>::class.java).toList()
+
+                Log.d(TAG, persons.toString())
+
+                // And an object to JSON
+                val jsonString = GSON.toJson(persons)
+                Log.d(TAG, jsonString)
+
             }
         }
 
