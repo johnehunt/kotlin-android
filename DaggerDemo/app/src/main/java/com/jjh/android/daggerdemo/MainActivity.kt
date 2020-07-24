@@ -12,7 +12,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Inject
-    lateinit var registrationViewModel: RegistrationViewModel
+    lateinit var registrationModel: RegistrationModel
+
+    @Inject
+    lateinit var statusManager: StatusManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate")
@@ -24,10 +27,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d(TAG, "onCreate - accessing injected object")
-        Log.d(TAG, "onCreate - ${registrationViewModel.toString()}")
+        Log.d(TAG, "onCreate - accessing injected objects")
+        Log.d(TAG, "onCreate - ${registrationModel.toString()}")
+        Log.d(TAG, "onCreate - ${statusManager.toString()}")
 
-        registrationViewModel.logMe()
+        registrationModel.logMe()
+
+        Log.d(TAG, "onCreate - accessing injected object")
+        statusManager.logStatus()
 
     }
 

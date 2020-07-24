@@ -15,6 +15,7 @@ interface UserProfileComponent {
 }
 
 fun main(args: Array<String>) {
+
     val component: UserProfileComponent = DaggerUserProfileComponent.create()
     val profile1 = component.getUserProfile()
     val profile2 = component.getUserProfile()

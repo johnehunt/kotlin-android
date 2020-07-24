@@ -6,7 +6,7 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Inject
 
-class RegistrationViewModel @Inject constructor(private val userManager: UserManager) {
+class RegistrationModel @Inject constructor(private val userManager: UserManager) {
     fun logMe() {
         Log.d("DaggerDemo", "RegistrationViewModel.logMe")
         userManager.logMe()
@@ -20,7 +20,13 @@ class UserManager @Inject constructor(val context: Context) {
     }
 }
 
-// Definition of a Dagger component that adds info from the StorageModule to the graph
+class StatusManager @Inject constructor() {
+    fun logStatus() {
+        Log.d("DaggerDemo", "StatusManager.logStatus")
+    }
+}
+
+// Definition of a Dagger component to be used by application
 @Component
 interface AppComponent {
 
@@ -31,7 +37,7 @@ interface AppComponent {
         fun create(@BindsInstance context: Context): AppComponent
     }
 
-    // Classes that can be injected by this Component
+    // Classes that can have dependencies injected by this Component
     fun inject(activity: MainActivity)
 }
 
