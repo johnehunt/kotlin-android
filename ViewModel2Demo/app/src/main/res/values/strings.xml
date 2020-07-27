@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ViewModelDemo</string>
+    <string name="click_me">Click Me</string>
+    <string name="none"><![CDATA[<none>]]></string>
+    <string name="convert">Convert</string>
+    <string name="to_convert">£ to convert</string>
+</resources>
