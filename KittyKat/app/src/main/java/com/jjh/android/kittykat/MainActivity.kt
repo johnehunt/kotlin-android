@@ -5,10 +5,10 @@ import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         detector.setOnDoubleTapListener(handler)
 
         // Set up Image with Gesture Handler
-        val image = findViewById<ImageButton>(R.id.image)
         image.setOnTouchListener { v, me -> detector.onTouchEvent(me) }
 
         /**
