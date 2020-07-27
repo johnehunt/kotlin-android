@@ -1,31 +1,25 @@
 package com.jjh.android.viewmodeldemo
 
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.activity.viewModels
+import com.jjh.android.viewmodeldemo.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
-    val viewModel: CounterViewModel by viewModels()
-
-    lateinit var text: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        text = findViewById(R.id.textView)
+        Log.d("MainActivity", "onCreate")
 
+        setContentView(R.layout.main_activity)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container, MainFragment.newInstance())
+                .commitNow()
+        }
     }
 
-    /**
-     * Member function to handle button click
-     * Uses viewModel to update data and refresh screen
-     */
-    fun addButtonHandler(view: View) {
-        viewModel.increment()
-        text.text = viewModel.count.toString()
-    }
 }
