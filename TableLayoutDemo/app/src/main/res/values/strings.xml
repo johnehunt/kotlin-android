@@ -9,4 +9,5 @@
     <string name="not_assigned">Not Assigned</string>
     <string name="product_qty">product qty</string>
     <string name="product_name_hint">product name</string>
+    <string name="product_id_info">product id info</string>
 </resources>

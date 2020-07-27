@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import com.jjh.android.tablelayoutdemo.model.Product
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,30 +13,19 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-    private lateinit var id: EditText
-    private lateinit var productName: EditText
-    private lateinit var productQuantity: EditText
-    private lateinit var productsView: EditText
-
     private val products: MutableList<Product> = mutableListOf<Product>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         Log.d(TAG, "onCreate")
         setContentView(R.layout.activity_main)
 
-        id = findViewById(R.id.productId)
-        productName = findViewById(R.id.productName)
-        productQuantity = findViewById(R.id.productQuantity)
-        productsView = findViewById(R.id.productsView)
         productsView.isEnabled = false // Make the text field non editable
-
     }
 
     fun addProduct(view: View) {
         Log.d(TAG, "addProduct")
-        val pId = id.text.toString()
+        val pId = productId.text.toString()
         val pName = productName.text.toString()
         val pQuantity = productQuantity.text.toString()
         if (pId != "") {
@@ -45,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             clearFields()
             updateProductsView()
         } else {
-            id.setText("Requires an ID")
+            productId.setText("Requires an ID")
         }
     }
 
@@ -59,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearFields() {
         Log.d(TAG, "clearFields")
-        id.setText("")
+        productId.setText("")
         productName.setText("")
         productQuantity.setText("")
     }
