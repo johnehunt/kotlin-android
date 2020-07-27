@@ -12,8 +12,6 @@ class MainViewModel : ViewModel() {
     }
 
     private var sterlingText = ""
-    // private var result: Double = 0.0
-
     private var result: MutableLiveData<Double> = MutableLiveData()
 
     fun setAmount(value: String) {

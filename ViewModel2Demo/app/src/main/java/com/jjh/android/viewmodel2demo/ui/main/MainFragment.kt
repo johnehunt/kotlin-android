@@ -24,7 +24,6 @@ class MainFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreateView")
         return inflater.inflate(R.layout.main_fragment, container, false)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -32,8 +31,6 @@ class MainFragment : Fragment() {
         Log.d(TAG, "onActivityCreated")
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-        // result.text = viewModel.getResult().toString()
 
         val resultObserver = Observer<Double> {
             value -> result.text = value.toString()
@@ -44,7 +41,6 @@ class MainFragment : Fragment() {
             Log.d(TAG, "convertButton click handler")
             if (sterlingText.text.isNotEmpty()) {
                 viewModel.setAmount(sterlingText.text.toString())
-                // result.text = viewModel.getResult().toString()
             } else {
                 result.text = "No Value"
             }
