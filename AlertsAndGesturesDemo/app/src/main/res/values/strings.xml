@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AlertsAndGesturesDemo</string>
+    <string name="show">Show</string>
+    <string name="name">Name</string>
+    <string name="show_dialog">Show Dialog</string>
+    <string name="message">message</string>
+</resources>
