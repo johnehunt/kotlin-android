@@ -18,8 +18,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
         setContentView(R.layout.activity_main)
+
+        // Using Android extensions to access countView
         countView.text = countValue.toString()
     }
+
+    // Button click handlers
 
     fun add(view: View) {
         Log.d(TAG, "add")
