@@ -36,66 +36,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    internal inner class ToastButtonHandler : View.OnClickListener {
-        override fun onClick(view: View) {
-            val toast = Toast.makeText(
-                this@MainActivity,
-                "Clicked $count",
-                Toast.LENGTH_LONG
-            )
-            toast.setGravity(
-                Gravity.CENTER,
-                toast.xOffset / 2,
-                toast.yOffset / 2
-            )
-            toast.show()
-        }
-    }
-
-    internal inner class DatePickerButtonHandler : View.OnClickListener {
-        override fun onClick(view: View) {
-            val datePickerListener =
-                OnDateSetListener { view, selectedYear, selectedMonth, selectedDay ->
-
-                    // when dialog box is closed, below method will be called.
-                    val toast = Toast.makeText(
-                        this@MainActivity,
-                        "selected $selectedYear, $selectedMonth, $selectedDay",
-                        Toast.LENGTH_LONG
-                    )
-                    toast.show()
-                }
-            val datePickerDialog = DatePickerDialog(
-                this@MainActivity,
-                datePickerListener,
-                2020, 4, 1
-            )
-            datePickerDialog.show()
-        }
-    }
-
-    internal inner class TimePickerButtonHandler : View.OnClickListener {
-        override fun onClick(view: View) {
-            val c = Calendar.getInstance()
-            val hour = c[Calendar.HOUR_OF_DAY]
-            val minute = c[Calendar.MINUTE]
-
-            // Launch Time Picker Dialog
-            val timePickerDialog = TimePickerDialog(
-                this@MainActivity,
-                OnTimeSetListener { view, selectedHour, selectedMinute ->
-                    val toast = Toast.makeText(
-                        this@MainActivity,
-                        "selected $selectedHour:$selectedMinute",
-                        Toast.LENGTH_LONG
-                    )
-                    toast.show()
-                }, hour, minute, false
-            )
-            timePickerDialog.show()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -108,46 +48,7 @@ class MainActivity : AppCompatActivity() {
         addButton.setOnClickListener(AddButtonHandler())
         val subButton = findViewById<Button>(R.id.sub)
         subButton.setOnClickListener(SubtractButtonHandler())
-        val showButton = findViewById<Button>(R.id.show)
-        showButton.setOnClickListener(ToastButtonHandler())
-        val showDatePickerButton =
-            findViewById<Button>(R.id.datePickerButton)
-        showDatePickerButton.setOnClickListener(DatePickerButtonHandler())
-        val showTimePicker =
-            findViewById<Button>(R.id.timePicker)
-        showTimePicker.setOnClickListener(TimePickerButtonHandler())
-        setupDialogButton()
+
     }
 
-    private fun setupDialogButton() {
-        val message = findViewById<TextView>(R.id.message)
-        val button = findViewById<Button>(R.id.dialogButton)
-        button.setOnClickListener {
-            val builder =
-                AlertDialog.Builder(this@MainActivity)
-            builder.setTitle("Exit")
-            builder.setMessage("Do you wish to Exit?")
-            // set three option buttons
-            builder.setPositiveButton(
-                "Yes"
-            ) { dialog, whichButton ->
-                val msg = "YES $whichButton"
-                message.setText(msg)
-            }
-            builder.setNeutralButton(
-                "Cancel"
-            ) { dialog, whichButton ->
-                val msg = "CANCEL $whichButton"
-                message.setText(msg)
-            }
-            builder.setNegativeButton(
-                "NO"
-            ) { dialog, whichButton ->
-                val msg = "NO $whichButton"
-                message.setText(msg)
-            }
-            val dialog = builder.create()
-            dialog.show()
-        }
-    }
 }
