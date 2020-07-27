@@ -5,6 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.jjh.android.viewmodeldemo.ui.main.MainFragment
 
+/**
+ * Illustrates the use of a ViewModel
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
