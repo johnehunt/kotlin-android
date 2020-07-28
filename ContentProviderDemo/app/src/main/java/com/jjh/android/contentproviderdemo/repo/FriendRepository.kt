@@ -13,10 +13,10 @@ class FriendRepository(context: Context) {
         private const val TAG = "ContentProviderDemo"
     }
 
-    private val myCR: ContentResolver
+    private val contentResolver: ContentResolver
 
     init {
-        myCR = context.contentResolver
+        contentResolver = context.contentResolver
     }
 
     fun addFriend(friend: Friend) {
@@ -25,13 +25,13 @@ class FriendRepository(context: Context) {
         values.put("id", friend.id)
         values.put("first_name", friend.firstName)
         values.put("last_name", friend.lastName)
-        myCR.insert(FriendContentProvider.CONTENT_URI, values)
+        contentResolver.insert(FriendContentProvider.CONTENT_URI, values)
     }
 
     fun deleteFriend(id: Int): Boolean {
         Log.d(TAG, "FriendRepository.deleteFriend($id)")
         val selection = "id = \"$id\""
-        val rowsDeleted = myCR.delete(FriendContentProvider.CONTENT_URI,
+        val rowsDeleted = contentResolver.delete(FriendContentProvider.CONTENT_URI,
             selection, null)
         return rowsDeleted > 0
     }
@@ -42,7 +42,7 @@ class FriendRepository(context: Context) {
 
         val selection = "id = \"$id\""
 
-        val cursor = myCR.query(FriendContentProvider.CONTENT_URI,
+        val cursor = contentResolver.query(FriendContentProvider.CONTENT_URI,
             projection, selection, null, null)
 
         var friend: Friend? = null

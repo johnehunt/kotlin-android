@@ -19,14 +19,14 @@ class FriendContentProvider : ContentProvider() {
 
         private const val TAG = "ContentProviderDemo"
 
-        private const val TABLE_NAME = "friends"
-
-        const val AUTHORITY = "com.jjh.android.contentproviderdemo.provider.FriendContentProvider"
+        private const val AUTHORITY = "com.jjh.android.contentproviderdemo.provider.FriendContentProvider"
         val CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/friends")
         const val CONTENT_TYPE =
             "vnd.android.cursor.dir/vnd.com.jjh.android.provider.friends"
         private var sUriMatcher: UriMatcher? = null
         private const val FRIENDS = 1
+
+        private const val TABLE_NAME = "friends"
 
         init {
             sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
