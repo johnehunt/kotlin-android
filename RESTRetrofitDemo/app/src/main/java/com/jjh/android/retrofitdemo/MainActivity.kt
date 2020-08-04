@@ -1,12 +1,9 @@
 package com.jjh.android.retrofitdemo
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.jjh.android.retrofitdemo.model.Person
 import com.jjh.android.retrofitdemo.service.PersonService
@@ -16,6 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,18 +25,11 @@ class MainActivity : AppCompatActivity() {
         private const val URL = "http://10.0.2.2:8080/"
     }
 
-    private lateinit var textView: TextView
-    private lateinit var editText: EditText
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
-
         setContentView(R.layout.activity_main)
-        textView = findViewById(R.id.textView)
         textView.text = URL
-
-        editText = findViewById(R.id.editText)
     }
 
     fun onClick(view: View) {
