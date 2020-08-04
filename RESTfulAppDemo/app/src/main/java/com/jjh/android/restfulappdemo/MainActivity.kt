@@ -5,15 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.jjh.android.restfulappdemo.model.Person
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,19 +24,11 @@ class MainActivity : AppCompatActivity() {
         private val GSON = Gson()
     }
 
-    private lateinit var textView: TextView
-    private lateinit var editText: EditText
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
-
         setContentView(R.layout.activity_main)
-
-        textView = findViewById(R.id.textView)
         textView.text = URL
-
-        editText = findViewById(R.id.editText)
     }
 
     fun onClick(view: View) {
