@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(TAG, "onCreate()")
 
-        savedInstanceState?.let {
-            val msg = it.getString("msg")
+        savedInstanceState?.apply {
+            val msg = getString("msg")
             Log.d(TAG, "onCreate() - $msg")
         }
     }
