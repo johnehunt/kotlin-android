@@ -5,9 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,19 +14,14 @@ class MainActivity : AppCompatActivity() {
         private const val REQUEST_CODE = 222
     }
 
-    private var label: TextView? = null
-    private var text: EditText? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        label = findViewById(R.id.label)
-        text = findViewById(R.id.editText)
     }
 
     fun onPickContactClick(v: View?) {
         // Tell it that its requestCode (nickname) is 222
-        val myData = text!!.text.toString()
+        val myData = editText.text.toString()
         val intent = Intent(Intent.ACTION_PICK, Uri.parse(myData))
         startActivityForResult(intent, REQUEST_CODE)
     }
@@ -43,10 +37,10 @@ class MainActivity : AppCompatActivity() {
                 val selectedContact = data!!.dataString
                 // it will return an URI that looks like:
                 // content://contacts/people/n where n is the selected contacts' ID
-                label!!.text = selectedContact
+                label.text = selectedContact
             } else {
                 // user pressed the BACK button
-                label!!.text = "Selection CANCELLED $returnedRequestCode, $resultCode"
+                label.text = "Selection CANCELLED $returnedRequestCode, $resultCode"
             }
         }
     }
