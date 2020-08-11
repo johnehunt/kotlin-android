@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TabbedViewDemo</string>
+    <string name="tab_title_text_1">Tab 1</string>
+    <string name="tab_title_text_2">Tab 2</string>
+    <string name="tab_title_text_3">Tab 3</string>
+    <string name="hello_from_tab_1_fragment">Hello from Tab 1 Fragment</string>
+    <string name="hello_from_tab_2_fragment">Hello from Tab 2 Fragment</string>
+    <string name="hello_from_default_tab_fragment">Hello from Default Tab Fragment</string>
+</resources>
