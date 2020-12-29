@@ -8,9 +8,9 @@ class Board {
     private val cells =
         Array(3) { arrayOfNulls<Counter>(3) }
 
-    var firstPlayer: Player
-    var humanPlayer: Player
-    var computerPlayer: ComputerPlayer
+    val firstPlayer: Player
+    val humanPlayer: Player
+    val computerPlayer: ComputerPlayer
 
     init {
         Log.d(this.javaClass.simpleName, "constructor()")
@@ -42,7 +42,7 @@ class Board {
         row[move.y] = move.counter
     }
 
-    fun isCellEmpty(counter: Counter?): Boolean {
+    private fun isCellEmpty(counter: Counter?): Boolean {
         return counter == null
     }
 
@@ -51,7 +51,7 @@ class Board {
         return counter == null
     }
 
-    fun cellContains(
+    private fun cellContains(
         counter: Counter,
         row: Int,
         column: Int

@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        private val TAG = "MainActivity"
+        private const val TAG = "MainActivity"
     }
 
     private var board: Board
@@ -145,7 +145,4 @@ class MainActivity : AppCompatActivity() {
         return colString.toInt()
     }
 
-    fun getBoard(): Board? {
-        return board
-    }
 }

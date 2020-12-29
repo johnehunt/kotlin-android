@@ -47,23 +47,30 @@ class ComputerPlayer(counter: Counter, private val board: Board) : Player(counte
         get() {
             Log.d(this.javaClass.simpleName, "getMove()")
             // Provide a very simple algorithm for selecting a move
-            return if (board.isCellEmpty(1, 1)) {
-                // Choose the center
-                Move(1, 1, counter)
-            } else if (board.isCellEmpty(0, 0)) {
-                // Choose the top left
-                Move(0, 0, counter)
-            } else if (board.isCellEmpty(2, 2)) {
-                // Choose the bottom right
-                Move(2, 2, counter)
-            } else if (board.isCellEmpty(0, 2)) {
-                // Choose the top right
-                Move(0, 2, counter)
-            } else if (board.isCellEmpty(0, 2)) {
-                // Choose the top right
-                Move(2, 0, counter)
-            } else {
-                randomlySelectMove()
+            return when {
+                board.isCellEmpty(1, 1) -> {
+                    // Choose the center
+                    Move(1, 1, counter)
+                }
+                board.isCellEmpty(0, 0) -> {
+                    // Choose the top left
+                    Move(0, 0, counter)
+                }
+                board.isCellEmpty(2, 2) -> {
+                    // Choose the bottom right
+                    Move(2, 2, counter)
+                }
+                board.isCellEmpty(0, 2) -> {
+                    // Choose the top right
+                    Move(0, 2, counter)
+                }
+                board.isCellEmpty(0, 2) -> {
+                    // Choose the top right
+                    Move(2, 0, counter)
+                }
+                else -> {
+                    randomlySelectMove()
+                }
             }
         }
 
