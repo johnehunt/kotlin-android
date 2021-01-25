@@ -16,17 +16,14 @@ class Board {
         Log.d(this.javaClass.simpleName, "constructor()")
         // Randomly allocate user to X or O
         val rand = Random()
-        val r = rand.nextInt(100)
-        if (r > 49) {
-            val playerOne = Player(Counter.X)
-            humanPlayer = playerOne
-            computerPlayer = ComputerPlayer(Counter.O, this)
-            firstPlayer = playerOne
-        } else {
-            val playerOne = ComputerPlayer(Counter.O, this)
-            computerPlayer = playerOne
+        if (rand.nextInt(100) > 49) {
             humanPlayer = Player(Counter.X)
-            firstPlayer = playerOne
+            computerPlayer = ComputerPlayer(Counter.O, this)
+            firstPlayer = humanPlayer
+        } else {
+            computerPlayer = ComputerPlayer(Counter.O, this)
+            humanPlayer = Player(Counter.X)
+            firstPlayer = computerPlayer
         }
     }
 
@@ -42,22 +39,14 @@ class Board {
         row[move.y] = move.counter
     }
 
-    private fun isCellEmpty(counter: Counter?): Boolean {
-        return counter == null
-    }
+    private fun isCellEmpty(counter: Counter?) = counter == null
 
-    fun isCellEmpty(row: Int, col: Int): Boolean {
-        val counter = cells[row][col]
-        return counter == null
-    }
+    fun isCellEmpty(row: Int, col: Int) = cells[row][col] == null
 
     private fun cellContains(
         counter: Counter,
         row: Int,
-        column: Int
-    ): Boolean {
-        return cells[row][column] == counter
-    }
+        column: Int) =  cells[row][column] == counter
 
     val isFull: Boolean
         get() {
@@ -74,7 +63,7 @@ class Board {
     fun checkForWinner(player: Player): Boolean {
         Log.d(this.javaClass.simpleName, "checkForWinner($player)")
         val c = player.counter
-               // Across the top
+        // Across the top
         return cellContains(c, 0, 0) && cellContains(c, 0, 1) && cellContains(c, 0, 2) ||
                 // Across the middle
                 cellContains(c, 1, 0) && cellContains(c, 1, 1) && cellContains(c, 1, 2) ||

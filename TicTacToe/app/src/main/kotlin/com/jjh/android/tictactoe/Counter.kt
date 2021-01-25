@@ -5,10 +5,6 @@ class Counter(initialLabel: String) {
 
     private val label: String
 
-    override fun toString(): String {
-        return label
-    }
-
     companion object {
         private const val XLabel = "X"
         private const val OLabel = "O"
@@ -23,4 +19,8 @@ class Counter(initialLabel: String) {
             throw GameException("Counter Label must be $XLabel or $OLabel")
         }
     }
+
+
+    override fun toString() = label
+
 }

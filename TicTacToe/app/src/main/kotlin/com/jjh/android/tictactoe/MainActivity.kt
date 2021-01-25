@@ -21,75 +21,56 @@ class MainActivity : AppCompatActivity() {
         board = Board()
     }
 
-    inner class ButtonHandler : View.OnClickListener {
-        override fun onClick(view: View) {
-            Log.d(TAG,"ButtonHandler.onClick()")
-            val buttonClicked = view as Button
-            val buttonText = buttonClicked.text.toString()
-            if (buttonText != " ") {
-                Toast.makeText(this@MainActivity, "Cell is already in use!", Toast.LENGTH_SHORT)
-                    .show()
+    fun onButtonClick(view: View) {
+        Log.d(TAG, "ButtonHandler.onClick()")
+        val buttonClicked = view as Button
+        val buttonText = buttonClicked.text.toString()
+        if (buttonText != " ") {
+            Toast.makeText(this@MainActivity,
+                "Cell is already in use!", Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            val player = board.humanPlayer
+            var finished = checkGameStatus(player, buttonClicked)
+            if (finished) {
+                restartButton.isEnabled = true
             } else {
-                val player: Player = board.humanPlayer
-                var finished: Boolean = checkGameStatus(player, buttonClicked)
+                val buttonSelected = makeComputerMove()
+                finished = checkGameStatus(board.computerPlayer, buttonSelected)
                 if (finished) {
-                    restartButton.isEnabled = true
-                } else {
-                    val buttonSelected: Button = makeComputerMove()
-                    finished = checkGameStatus(board.computerPlayer, buttonSelected)
-                    if (finished) {
-                        buttonSelected.isEnabled = true
-                    }
+                    buttonSelected.isEnabled = true
                 }
             }
         }
     }
 
-    inner class RestartButtonHandler : View.OnClickListener {
-        override fun onClick(v: View) {
-            Log.d(TAG, "RestartButtonHandler.onClick()")
-            setupNewBoard()
-            button0.text = " "
-            button1.text = " "
-            button2.text = " "
-            button3.text = " "
-            button4.text = " "
-            button5.text = " "
-            button6.text = " "
-            button7.text = " "
-            button8.text = " "
-            restartButton.isEnabled = false
-        }
+    fun onRestartButtonClick(v: View) {
+        Log.d(TAG, "onRestartButtonClick")
+        setupNewBoard()
+        button0.text = " "
+        button1.text = " "
+        button2.text = " "
+        button3.text = " "
+        button4.text = " "
+        button5.text = " "
+        button6.text = " "
+        button7.text = " "
+        button8.text = " "
+        restartButton.isEnabled = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate()")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val handler = ButtonHandler()
-
-        // Setup buttons - all buttons use the same handler
-        button0.setOnClickListener(handler)
-        button1.setOnClickListener(handler)
-        button2.setOnClickListener(handler)
-        button3.setOnClickListener(handler)
-        button4.setOnClickListener(handler)
-        button5.setOnClickListener(handler)
-        button6.setOnClickListener(handler)
-        button7.setOnClickListener(handler)
-        button8.setOnClickListener(handler)
-
-        restartButton.setOnClickListener(RestartButtonHandler())
         // Disable restart
         restartButton.isEnabled = false
-
     }
 
     private fun setupNewBoard() {
         Log.d(TAG, "setupNewBoard()")
         board = Board()
-        if (board.firstPlayer.isAutomatedPlayer()) {
+        if (board.firstPlayer.isAutomatedPlayer) {
             makeComputerMove()
         }
     }
@@ -106,25 +87,27 @@ class MainActivity : AppCompatActivity() {
     private fun checkGameStatus(player: Player, buttonClicked: Button): Boolean {
         Log.d(TAG, "checkGameStatus()")
         val counter = player.counter
-        val move = Move(getButtonRow(buttonClicked), getButtonCol(buttonClicked), counter)
+        val move = Move(getButtonRow(buttonClicked),
+                        getButtonCol(buttonClicked),
+                        counter)
         board.addMove(move)
         buttonClicked.text = counter.toString()
-        var finished = false
-        if (board.checkForWinner(player)) {
+        return if (board.checkForWinner(player)) {
             showWinnerMessage(player)
-            finished = true
-        }
-        if (!finished && board.isFull) {
+            true
+        } else if (board.isFull) {
             showTieMessage()
-            finished = true
+            true
+        } else {
+            false
         }
-        return finished
     }
 
     private fun showWinnerMessage(player: Player) {
         Log.d(TAG, "showWinnerMessage()")
-        Toast.makeText(this, "Well Done $player WON!!", Toast.LENGTH_LONG)
-            .show()
+        Toast.makeText(this,
+                       "Well Done $player WON!!",
+                       Toast.LENGTH_LONG).show()
     }
 
     private fun showTieMessage() {

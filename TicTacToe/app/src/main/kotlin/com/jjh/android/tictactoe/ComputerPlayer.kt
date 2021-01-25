@@ -8,6 +8,9 @@ class ComputerPlayer(counter: Counter, private val board: Board) : Player(counte
     // Set up random number generator
     private val random = Random()
 
+    // automated player property
+    override val isAutomatedPlayer = true
+
     private fun randomlySelectMove(): Move {
         Log.d(this.javaClass.simpleName, "randomlySelectMove()")
         // Try to use a simplistic random selection approach
@@ -73,9 +76,5 @@ class ComputerPlayer(counter: Counter, private val board: Board) : Player(counte
                 }
             }
         }
-
-    override fun isAutomatedPlayer(): Boolean {
-        return true
-    }
 
 }
