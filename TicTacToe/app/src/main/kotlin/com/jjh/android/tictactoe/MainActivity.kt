@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 val buttonSelected = makeComputerMove()
                 finished = checkGameStatus(board.computerPlayer, buttonSelected)
                 if (finished) {
-                    buttonSelected.isEnabled = true
+                    restartButton.isEnabled = true
                 }
             }
         }
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "showWinnerMessage()")
         Toast.makeText(this,
                        "Well Done $player WON!!",
-                       Toast.LENGTH_LONG).show()
+                       Toast.LENGTH_SHORT).show()
     }
 
     private fun showTieMessage() {
