@@ -22,12 +22,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onButtonClick(view: View) {
-        Log.d(TAG, "ButtonHandler.onClick()")
+        Log.d(TAG, "onButtonClick()")
         val buttonClicked = view as Button
         val buttonText = buttonClicked.text.toString()
         if (buttonText != " ") {
-            Toast.makeText(this@MainActivity,
-                "Cell is already in use!", Toast.LENGTH_SHORT
+            Toast.makeText(this,
+                "Cell is already in use!",
+                Toast.LENGTH_SHORT
             ).show()
         } else {
             val player = board.humanPlayer
@@ -112,8 +113,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showTieMessage() {
         Log.d(TAG, "showWinnerMessage()")
-        Toast.makeText(this, "The Game was a Tie!!", Toast.LENGTH_LONG)
-            .show()
+        Toast.makeText(this,
+            "The Game was a Tie!!",
+            Toast.LENGTH_LONG).show()
     }
 
     private fun getButtonRow(button: Button): Int {
