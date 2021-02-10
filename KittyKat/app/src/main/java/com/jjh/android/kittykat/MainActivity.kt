@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         detector.setOnDoubleTapListener(handler)
 
         // Set up Image with Gesture Handler
-        image.setOnTouchListener { v, me -> detector.onTouchEvent(me) }
+        image.setOnTouchListener { v, event -> detector.onTouchEvent(event) }
 
         /**
          * Uncomment to try out pinch gesture
@@ -39,6 +39,13 @@ class MainActivity : AppCompatActivity() {
 //        });
     }
 
+    private fun showMessage(message: String) {
+        Toast.makeText(
+            this,
+            message,
+            Toast.LENGTH_SHORT).show()
+    }
+
     /**
      * SimpleOneGestureListener is a convenience class used to provide default
      * implementations for all methods in the OnGestureListener interface
@@ -48,7 +55,7 @@ class MainActivity : AppCompatActivity() {
      * OnDoubleTapListener is used to notify when a double-tap occurs.
      *
      */
-    internal inner class GestureHandler : SimpleOnGestureListener() {
+    inner class GestureHandler : SimpleOnGestureListener() {
         /**
          * Notified of a fling event when it occurs with the initial on down
          * MotionEvent and the matching up MotionEvent. true indicates that
@@ -56,10 +63,7 @@ class MainActivity : AppCompatActivity() {
          */
         override fun onFling(event1: MotionEvent, event2: MotionEvent,
                              velocityX: Float, velocityY: Float): Boolean {
-            Toast.makeText(
-                this@MainActivity,
-                "Purrr",
-                Toast.LENGTH_SHORT).show()
+            showMessage("Purrr")
             return true
         }
 
@@ -67,10 +71,7 @@ class MainActivity : AppCompatActivity() {
          * Invoked when a double-tap gesture occur.
          */
         override fun onDoubleTap(e: MotionEvent): Boolean {
-            Toast.makeText(
-                this@MainActivity,
-                "Ouch!",
-                Toast.LENGTH_SHORT).show()
+            showMessage("Ouch!")
             return true
         }
     }
@@ -78,12 +79,9 @@ class MainActivity : AppCompatActivity() {
     /**
      * Example of Pinch gesture detection
      */
-    internal inner class MyPinchListener : SimpleOnScaleGestureListener() {
+    inner class MyPinchListener : SimpleOnScaleGestureListener() {
         override fun onScale(detector: ScaleGestureDetector): Boolean {
-            Toast.makeText(
-                this@MainActivity,
-                "PINCH! OUCH!",
-                Toast.LENGTH_SHORT).show()
+            showMessage("PINCH! OUCH!")
             return true
         }
     }
