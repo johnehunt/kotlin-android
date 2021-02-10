@@ -8,21 +8,15 @@ import android.view.ViewGroup
 import com.jjh.android.tabbedviewdemo.R
 
 /**
- * A simple [Fragment] subclass.
- * Use the [DefaultTabFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Represents a fragment used for a tab
  */
-class DefaultTabFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+class Tab3Fragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.default_tab_fragment, container, false)
+        return inflater.inflate(R.layout.tab3_fragment, container, false)
     }
 
 }

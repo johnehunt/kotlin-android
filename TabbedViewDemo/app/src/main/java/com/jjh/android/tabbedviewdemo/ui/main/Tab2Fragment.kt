@@ -9,15 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.jjh.android.tabbedviewdemo.R
 
 /**
- * A simple [Fragment] subclass.
- * Use the [Tab2Fragment.newInstance] factory method to
- * create an instance of this fragment.
+ * A simple fragment to represent the contents within a tab
  */
 class Tab2Fragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
