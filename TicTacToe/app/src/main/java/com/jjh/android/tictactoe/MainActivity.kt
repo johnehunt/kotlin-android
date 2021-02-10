@@ -27,10 +27,7 @@ class MainActivity : AppCompatActivity() {
         val buttonClicked = view as Button
         val buttonText = buttonClicked.text.toString()
         if (buttonText != " ") {
-            Toast.makeText(this,
-                "Cell is already in use!",
-                Toast.LENGTH_SHORT
-            ).show()
+            showMessage("Cell is already in use!")
         } else {
             val player = board.humanPlayer
             var finished = checkGameStatus(player, buttonClicked)

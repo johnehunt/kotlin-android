@@ -1,7 +1,7 @@
 package com.jjh.android.tictactoe
 
 import android.util.Log
-import java.util.*
+import kotlin.random.Random
 
 class Board {
 
@@ -19,8 +19,7 @@ class Board {
     init {
         Log.d(TAG, "constructor()")
         // Randomly allocate user to X or O
-        val rand = Random()
-        if (rand.nextInt(100) > 49) {
+        if (Random.nextInt(100) > 49) {
             humanPlayer = Player(Counter.X)
             computerPlayer = ComputerPlayer(Counter.O, this)
             firstPlayer = humanPlayer
@@ -65,7 +64,6 @@ class Board {
         row: Int,
         column: Int) =  cells[row][column] == counter
 
-
     fun checkForWinner(player: Player): Boolean {
         Log.d(TAG, "checkForWinner($player)")
         val c = player.counter
@@ -86,6 +84,5 @@ class Board {
                 // other diagonal
                 cellContains(c, 0, 2) && cellContains(c, 1, 1) && cellContains(c, 2, 0)
     }
-
 
 }

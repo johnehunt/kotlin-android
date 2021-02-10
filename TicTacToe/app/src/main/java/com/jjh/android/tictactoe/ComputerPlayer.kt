@@ -26,8 +26,7 @@ class ComputerPlayer(counter: Counter, private val board: Board) : Player(counte
             // Randomly select the cell
             val row = random.nextInt(2)
             val column = random.nextInt(2)
-            Log.d(
-                this.javaClass.simpleName,
+            Log.d(TAG,
                 "randomlySelectMove() - $row, $column"
             )
             // Check to see if the cell is empty
