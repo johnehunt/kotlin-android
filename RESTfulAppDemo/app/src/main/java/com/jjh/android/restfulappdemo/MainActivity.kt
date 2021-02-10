@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onPostExecute(result: String) {
-            Log.d(TAG, "GetRequestAsyncTask.onPostExecute")
             super.onPostExecute(result)
+            Log.d(TAG, "GetRequestAsyncTask.onPostExecute")
             result.apply {
                 editText.setText(this)
 
