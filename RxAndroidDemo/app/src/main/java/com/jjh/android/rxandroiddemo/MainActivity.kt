@@ -44,12 +44,9 @@ class MainActivity : AppCompatActivity() {
             emitter.onComplete() }
                 .observeOn(Schedulers.io())
                 .doOnNext { Log.d(TAG, "next: $it") }
-                .subscribe { textView?.text = it.toString() }
+                .subscribe { textView.text = it.toString() }
 
         Log.d(TAG, "Observable done")
     }
 
-    private fun updateTheUserInterface(integer: Int) {
-        textView?.text = "$integer"
-    }
 }
