@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -104,18 +105,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showMessage(message: String) {
+        Log.d(TAG, "showMessage()")
+        Toast.makeText(this,
+            message,
+            Toast.LENGTH_SHORT).show()
+    }
+
     private fun showWinnerMessage(player: Player) {
         Log.d(TAG, "showWinnerMessage()")
-        Toast.makeText(this,
-                       "Well Done $player WON!!",
-                       Toast.LENGTH_SHORT).show()
+        showMessage("Well Done $player WON!!")
     }
 
     private fun showTieMessage() {
         Log.d(TAG, "showWinnerMessage()")
-        Toast.makeText(this,
-            "The Game was a Tie!!",
-            Toast.LENGTH_LONG).show()
+        showMessage("The Game was a Tie!!")
     }
 
     private fun getButtonRow(button: Button): Int {

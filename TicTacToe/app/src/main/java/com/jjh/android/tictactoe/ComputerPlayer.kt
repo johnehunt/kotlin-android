@@ -5,6 +5,10 @@ import java.util.Random
 
 class ComputerPlayer(counter: Counter, private val board: Board) : Player(counter) {
 
+    companion object {
+        private const val TAG = "ComputerPlayer"
+    }
+
     // Set up random number generator
     private val random = Random()
 
@@ -12,7 +16,7 @@ class ComputerPlayer(counter: Counter, private val board: Board) : Player(counte
     override val isAutomatedPlayer = true
 
     private fun randomlySelectMove(): Move {
-        Log.d(this.javaClass.simpleName, "randomlySelectMove()")
+        Log.d(TAG, "randomlySelectMove()")
         // Try to use a simplistic random selection approach
         // to find a cell to fill; if don't find a cell in 6 goes
         // then just find next free cell
@@ -48,7 +52,7 @@ class ComputerPlayer(counter: Counter, private val board: Board) : Player(counte
     // Provide a very simple algorithm for selecting a move
     val move: Move
         get() {
-            Log.d(this.javaClass.simpleName, "getMove()")
+            Log.d(TAG, "getMove()")
             // Provide a very simple algorithm for selecting a move
             return when {
                 board.isCellEmpty(1, 1) -> {

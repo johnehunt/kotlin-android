@@ -5,6 +5,10 @@ import java.util.*
 
 class Board {
 
+    companion object {
+        private const val TAG = "Board"
+    }
+
     private val cells =
         Array(3) { arrayOfNulls<Counter>(3) }
 
@@ -13,7 +17,7 @@ class Board {
     val computerPlayer: ComputerPlayer
 
     init {
-        Log.d(this.javaClass.simpleName, "constructor()")
+        Log.d(TAG, "constructor()")
         // Randomly allocate user to X or O
         val rand = Random()
         if (rand.nextInt(100) > 49) {
@@ -27,14 +31,27 @@ class Board {
         }
     }
 
+    val isFull: Boolean
+        get() {
+            for (row in cells) {
+                for (c in row) {
+                    if (isCellEmpty(c)) {
+                        return false
+                    }
+                }
+            }
+            return true
+        }
+
     fun computerPlayerMakeMove(): Move {
+        Log.d(TAG, "computerPlayerMakeMove()")
         val move = computerPlayer.move
         addMove(move)
         return move
     }
 
     fun addMove(move: Move) {
-        Log.d(this.javaClass.simpleName, "addMove($move)")
+        Log.d(TAG, "addMove($move)")
         val row = cells[move.x]
         row[move.y] = move.counter
     }
@@ -48,20 +65,9 @@ class Board {
         row: Int,
         column: Int) =  cells[row][column] == counter
 
-    val isFull: Boolean
-        get() {
-            for (row in cells) {
-                for (c in row) {
-                    if (isCellEmpty(c)) {
-                        return false
-                    }
-                }
-            }
-            return true
-        }
 
     fun checkForWinner(player: Player): Boolean {
-        Log.d(this.javaClass.simpleName, "checkForWinner($player)")
+        Log.d(TAG, "checkForWinner($player)")
         val c = player.counter
         // Across the top
         return cellContains(c, 0, 0) && cellContains(c, 0, 1) && cellContains(c, 0, 2) ||
