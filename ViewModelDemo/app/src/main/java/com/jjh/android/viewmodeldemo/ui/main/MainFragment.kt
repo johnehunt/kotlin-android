@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.jjh.android.viewmodeldemo.R
 
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -35,15 +34,15 @@ class MainFragment : Fragment() {
         // Older style of access to view model
         // viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        result.text = "$%.2f".format(viewModel.result)
+        dollarTextView.text = "$%.2f".format(viewModel.result)
 
         convertButton.setOnClickListener {
             Log.d(TAG, "convertButton click handler")
-            if (sterlingText.text.isNotEmpty()) {
-                viewModel.amount = sterlingText.text.toString()
-                result.text = "$%.2f".format(viewModel.result)
+            if (sterlingEditText.text.isNotEmpty()) {
+                viewModel.amount = sterlingEditText.text.toString()
+                dollarTextView.text = "$%.2f".format(viewModel.result)
             } else {
-                result.text = "No Value"
+                dollarTextView.text = "No Value"
             }
         }
     }
