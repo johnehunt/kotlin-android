@@ -20,9 +20,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onFragmentTwoButtonClick(v: View?) {
         Log.d(TAG, "onClick()")
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_layout, FragmentTwo())
-        transaction.commit()
+        // Uses flow style behaviour for concise code
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_layout, FragmentTwo())
+            .commitNow()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
