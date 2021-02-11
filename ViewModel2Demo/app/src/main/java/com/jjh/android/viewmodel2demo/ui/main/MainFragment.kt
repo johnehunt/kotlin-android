@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.jjh.android.viewmodel2demo.R
 import kotlinx.android.synthetic.main.main_fragment.*
 
@@ -15,10 +15,9 @@ class MainFragment : Fragment() {
 
     companion object {
         private const val TAG = "MainFragment"
-        fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -26,27 +25,20 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Log.d(TAG, "onActivityCreated")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated")
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-        val resultObserver = Observer<Double> {
-            value -> result.text = value.toString()
-        }
-        viewModel.getResult().observe(viewLifecycleOwner, resultObserver) // viewLifecycleOwner inherited from Fragment
+        val resultObserver = Observer<Double> { value -> dollarTextView.text = "$%.2f".format(value) }
+        // viewLifecycleOwner inherited from Fragment
+        viewModel.result.observe(viewLifecycleOwner, resultObserver)
 
         convertButton.setOnClickListener {
             Log.d(TAG, "convertButton click handler")
-            if (sterlingText.text.isNotEmpty()) {
-                viewModel.setAmount(sterlingText.text.toString())
-            } else {
-                result.text = "No Value"
+            if (sterlingEditText.text.isNotEmpty()) {
+                viewModel.amount = sterlingEditText.text.toString()
             }
         }
     }
-
-
 
 }

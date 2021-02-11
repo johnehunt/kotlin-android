@@ -4,4 +4,12 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" />
+    tools:context=".MainActivity" >
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.jjh.android.viewmodel2demo.ui.main.MainFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>
