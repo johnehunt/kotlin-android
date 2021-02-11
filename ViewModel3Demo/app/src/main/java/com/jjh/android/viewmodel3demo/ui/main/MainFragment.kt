@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.jjh.android.viewmodel3demo.R
 import com.jjh.android.viewmodel3demo.databinding.MainFragmentBinding
@@ -19,7 +20,7 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by viewModels<MainViewModel>()
 
     private lateinit var binding: MainFragmentBinding
 
@@ -31,14 +32,13 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
 
         return binding.root
-
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Log.d(TAG, "onActivityCreated")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated")
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        // Bind the view model to the layout variable myViewModel
         binding.setVariable(myViewModel, viewModel)
     }
 
