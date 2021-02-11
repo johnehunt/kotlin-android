@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    // Handler method for DIal Button
+    // Handler method for Dial Button
     fun onDialButtonClick(v: View?) {
         val myData = dialerText.text.toString()
         // Creates an Intent to trigger dialler
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     fun onSearchButtonClick(v: View?) {
         // triggers web search activity
         val intent = Intent(Intent.ACTION_WEB_SEARCH)
-        intent.putExtra(SearchManager.QUERY, "MG F Car")
+        intent.putExtra(SearchManager.QUERY, "Jaguar F Type Images")
         startActivity(intent)
     }
 }
