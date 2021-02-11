@@ -14,18 +14,19 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:hint="@string/to_convert"
-        android:autofillHints="" />
+        android:hint="@string/to_convert" />
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#F60303"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/convertButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/convert" />
+        android:text="@string/convert"/>
 
 </LinearLayout>

@@ -6,42 +6,46 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.jjh.android.viewmodeldemo.R
+
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
     companion object {
         private const val TAG = "MainFragment"
-        fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    // private lateinit var viewModel: MainViewModel
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreateView")
         return inflater.inflate(R.layout.main_fragment, container, false)
-
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Log.d(TAG, "onActivityCreated")
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated")
 
-        result.text = viewModel.getResult().toString()
+        // Older style of access to view model
+        // viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        result.text = "$%.2f".format(viewModel.result)
 
         convertButton.setOnClickListener {
             Log.d(TAG, "convertButton click handler")
             if (sterlingText.text.isNotEmpty()) {
-                viewModel.setAmount(sterlingText.text.toString())
-                result.text = viewModel.getResult().toString()
+                viewModel.amount = sterlingText.text.toString()
+                result.text = "$%.2f".format(viewModel.result)
             } else {
                 result.text = "No Value"
             }
         }
     }
+
 }
