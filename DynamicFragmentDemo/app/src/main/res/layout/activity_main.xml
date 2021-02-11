@@ -30,14 +30,14 @@
         android:text="@string/show_fragment_two" />
 
     <LinearLayout
-        android:id="@+id/displaylayout"
+        android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:baselineAligned="false">
 
         <fragment
-            android:id="@+id/fragment2"
+            android:id="@+id/fragment"
             android:name="com.jjh.android.dynamicfragmentdemo.FragmentOne"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

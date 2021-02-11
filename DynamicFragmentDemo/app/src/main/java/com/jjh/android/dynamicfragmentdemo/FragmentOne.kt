@@ -17,8 +17,12 @@ class FragmentOne : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         Log.d(TAG, "onCreateView()")
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragmentone, container, false)
+        return inflater.inflate(R.layout.fragment_one, container, false)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "onDestroyView()")
     }
 
 }

@@ -13,19 +13,15 @@ class MainActivity : AppCompatActivity() {
 
     fun onFragmentOneButtonClick(v: View?) {
         Log.d(TAG, "onClick()")
-        val fragment = FragmentOne()
-        val manager = supportFragmentManager
-        val transaction = manager.beginTransaction()
-        transaction.replace(R.id.displaylayout, fragment)
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_layout, FragmentOne())
         transaction.commit()
     }
 
     fun onFragmentTwoButtonClick(v: View?) {
         Log.d(TAG, "onClick()")
-        val fragment = FragmentTwo()
-        val manager = supportFragmentManager
-        val transaction = manager.beginTransaction()
-        transaction.replace(R.id.displaylayout, fragment)
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_layout, FragmentTwo())
         transaction.commit()
     }
 
