@@ -9,17 +9,17 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/last_time"
         android:textColor="#F44336"
         android:textSize="24sp" />
 
     <fragment
-        android:id="@+id/fragment2"
-        android:name="com.jjh.android.fragmentsdemo.DateTimeFragment"
+        android:id="@+id/fragment"
+        android:name="com.jjh.android.fragmentsdemo.DateDisplayFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:layout="@android:layout/activity_list_item" />
 
 </LinearLayout>
