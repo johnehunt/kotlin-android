@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,17 +24,15 @@ class MainActivity : AppCompatActivity() {
         val toast = Toast.makeText(
             this,
             "Name: ${inputName.text}",
-            Toast.LENGTH_LONG
-        )
+            Toast.LENGTH_LONG)
         toast.setGravity(
             Gravity.CENTER,
             toast.xOffset / 2,
-            toast.yOffset / 2
-        )
+            toast.yOffset / 2)
         toast.show()
     }
 
-    fun showDialog(view: View) {
+    fun showCustomDialog(view: View) {
         // Obtain a builder instance
         val builder = AlertDialog.Builder(this)
         // configure builder settings
@@ -71,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         val datePickerDialog = DatePickerDialog(
             this,
             datePickerListener,
-            2020, 4, 1
+            2021, 3, 12
         )
         datePickerDialog.show()
     }
