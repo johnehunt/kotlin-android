@@ -13,14 +13,12 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-    private val products: MutableList<Product> = mutableListOf<Product>()
+    private val products = mutableListOf<Product>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
         setContentView(R.layout.activity_main)
-
-        productsView.isEnabled = false // Make the text field non editable
     }
 
     fun addProduct(view: View) {
