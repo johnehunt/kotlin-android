@@ -3,7 +3,6 @@ package com.jjh.android.viewmodel2demo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.jjh.android.viewmodel2demo.ui.main.MainFragment
 
 /**
  * Illustrates use of a ViewModel and LiveData
