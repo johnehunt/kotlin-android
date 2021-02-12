@@ -11,9 +11,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Set up the ViewPager with an adapter
+        // Set up the ViewPager with adapter
         viewPager.adapter = TabPagerAdapter(this, supportFragmentManager)
-        // Set the viewPager for the tablayout
+        // Set the viewPager with tablayout
         tabLayout.setupWithViewPager(viewPager)
     }
+
 }

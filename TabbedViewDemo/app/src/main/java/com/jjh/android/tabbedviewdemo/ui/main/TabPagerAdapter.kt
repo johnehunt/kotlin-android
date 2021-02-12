@@ -10,29 +10,22 @@ import com.jjh.android.tabbedviewdemo.R
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class TabPagerAdapter(
-    private val context: Context,
-    fm: FragmentManager,
-    private var tabCount: Int = 3
-) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class TabPagerAdapter(private val context: Context,
+                      fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
         private val TAB_TITLES =
             arrayOf(R.string.tab_title_text_1,
                     R.string.tab_title_text_2,
                     R.string.tab_title_text_3)
-        private val tab1Fragment = Tab1Fragment()
-        private val tab2Fragment = Tab2Fragment()
-        private val tab3Fragment = Tab3Fragment()
+        private val TAB_FRAGMENTS =
+            arrayOf(Tab1Fragment(),
+                    Tab2Fragment(),
+                    Tab3Fragment())
     }
 
     override fun getItem(position: Int): Fragment {
-        // Determine which fragment to return based on the tab position
-        return when (position) {
-            0 -> tab1Fragment
-            1 -> tab2Fragment
-            else -> tab3Fragment
-        }
+        return TAB_FRAGMENTS[position]
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
@@ -40,6 +33,6 @@ class TabPagerAdapter(
     }
 
     override fun getCount(): Int {
-        return tabCount
+        return TAB_FRAGMENTS.size
     }
 }

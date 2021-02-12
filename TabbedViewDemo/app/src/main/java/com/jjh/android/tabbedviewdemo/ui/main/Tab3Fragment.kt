@@ -7,15 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.jjh.android.tabbedviewdemo.R
 
-/**
- * Represents a fragment used for a tab
- */
 class Tab3Fragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.tab3_fragment, container, false)
     }
 
