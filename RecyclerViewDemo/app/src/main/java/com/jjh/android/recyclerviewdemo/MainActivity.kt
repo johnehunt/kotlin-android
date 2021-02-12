@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+
+import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,12 +16,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate()")
-
         setContentView(R.layout.main_activity)
 
         // Access RecyclerView element and set up layout and adapter
-        val playRecyclerView = findViewById<RecyclerView>(R.id.play_recycler_view)
-        playRecyclerView.apply {
+        play_recycler_view.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = PlayAdapter()
         }

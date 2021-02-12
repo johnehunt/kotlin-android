@@ -16,19 +16,14 @@ class PlayViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         private const val TAG = "PlayViewHolder"
     }
 
-    private var titleView: TextView? = null
-    private var yearView: TextView? = null
+    private val titleView = itemView.findViewById<TextView>(R.id.play_title)
+    private val yearView = itemView.findViewById<TextView>(R.id.play_year)
 
-
-    init {
-        titleView = itemView.findViewById(R.id.play_title)
-        yearView = itemView.findViewById(R.id.play_year)
-    }
 
     fun bind(play: Play) {
         Log.d(TAG, "bind($play)")
-        titleView!!.text = play.title
-        yearView!!.text = play.year.toString()
+        titleView.text = play.title
+        yearView.text = play.year.toString()
     }
 
 }
