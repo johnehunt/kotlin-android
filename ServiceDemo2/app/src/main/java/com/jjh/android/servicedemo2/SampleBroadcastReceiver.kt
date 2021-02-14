@@ -13,10 +13,8 @@ class SampleBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val serviceData = intent.getStringExtra("serviceData")
-        Log.d(
-            "SD - SampleBroadcastReceiver - onReceive()",
-            "serviceData: >>> $serviceData"
-        )
+        Log.d("SD - SampleBroadcastReceiver - onReceive()",
+            "serviceData: >>> $serviceData")
         Toast.makeText(context, serviceData, Toast.LENGTH_LONG).show()
     }
 
