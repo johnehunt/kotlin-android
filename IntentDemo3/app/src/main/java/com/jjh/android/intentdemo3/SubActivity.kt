@@ -4,12 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.sub_activity.*
 
 class SubActivity : AppCompatActivity() {
-
-    private var text: EditText? = null
 
     // Hold data sent by parent
     private var data: String? = null
@@ -18,13 +16,10 @@ class SubActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sub_activity)
 
-        // bind UI variables
-        text = findViewById(R.id.editText)
-
         // Retrieve data sent by parent
-        val myBundle = intent.extras
+        val myBundle: Bundle? = intent.extras
         // Extract the individual data parts of the bundle
-        data = myBundle!!.getString("msg")
+        data = myBundle?.getString("msg")
     }
 
     fun onClickSendResponse(v: View?) {
@@ -33,7 +28,7 @@ class SubActivity : AppCompatActivity() {
 
     override fun finish() {
         val intent = Intent()
-        intent.putExtra("result", data + " " + text!!.text)
+        intent.putExtra("result", data + " " + editText.text)
         setResult(Activity.RESULT_OK, intent)
         super.finish()
     }
