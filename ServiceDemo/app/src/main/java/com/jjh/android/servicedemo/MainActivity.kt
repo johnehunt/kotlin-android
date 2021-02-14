@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,13 +15,11 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-    private var message: TextView? = null
     private var startServiceIntent: Intent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        message = findViewById(R.id.message)
     }
 
     // Button handler methods
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "Starting service!")
             startServiceIntent = Intent(this, SampleService::class.java)
             startService(startServiceIntent)
-            message!!.text = "Started Service"
+            message.text = "Started Service"
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         try {
             Log.d(TAG, "Stopping service!")
             stopService(startServiceIntent)
-            message!!.text = "Stopped Service"
+            message.text = "Stopped Service"
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
         }
