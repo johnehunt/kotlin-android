@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,14 +14,9 @@ class MainActivity : AppCompatActivity() {
         private const val REQUEST_CODE = 111
     }
 
-    private var textView: TextView? = null
-    private var resultTextView: TextView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        textView = findViewById(R.id.textView)
-        resultTextView = findViewById(R.id.resultTextView)
     }
 
     fun onClickInvokeSubActivity(v: View?) {
@@ -30,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SubActivity::class.java)
             // Bundle allows multiple data items to be sent simply
             val bundle = Bundle()
-            bundle.putString("msg", textView!!.text.toString())
+            bundle.putString("msg", textView.text.toString())
             // bind the Bundle and the Intent that talks to Activity2
             intent.putExtras(bundle)
             // call Activity2 and wait for results
@@ -55,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     resultTextView!!.text = result
                 } else {
                     // user pressed the BACK button
-                    textView!!.text = "Selection CANCELLED!"
+                    textView.text = "Selection CANCELLED!"
                 }
             }
         } catch (e: Exception) {
