@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * The purpose of this demonstration application
@@ -23,18 +24,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var receiver: ResultReceiver? = null
-    private var input: EditText? = null
-    var result: TextView? = null
 
     // Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate()")
-
-        // Set up refs to views
-        input = findViewById(R.id.input)
-        result = findViewById(R.id.result)
 
         // Set up receiver
         receiver = FactorialResultReceiver(Handler())
@@ -57,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     private val inputAsInt: Int
         private get() {
             Log.d(TAG, "getInputAsInt()")
-            val inputString = input!!.text.toString()
+            val inputString = input.text.toString()
             return inputString.toInt()
         }
 
@@ -82,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                 FactorialCalculationService.SUCCESS -> {
                     val calculatedTotal = resultData.getInt(FactorialCalculationService.RESULT)
                     // update the display
-                    result!!.text = Integer.toString(calculatedTotal)
+                    result.text = calculatedTotal.toString()
                 }
                 FactorialCalculationService.ERROR -> Toast.makeText(
                     applicationContext, "Error in Calculation",
