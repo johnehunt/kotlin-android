@@ -17,6 +17,7 @@ class BoundService : Service() {
     // Binding support
     private val binder: IBinder = DemoBinder()
 
+    // Common pattern for accessing service
     inner class DemoBinder : Binder() {
         val service: BoundService
             get() = this@BoundService

@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onStartServiceButtonClick(v: View) {
-        super.onStart()
         Log.d(TAG, "onStartServiceButtonClick()")
         // Create intent to bind to service
         val intent = Intent(this, BoundService::class.java)
@@ -57,9 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     // Inner classes
     private inner class ServiceConnectionHandler : ServiceConnection {
-        override fun onServiceConnected(
-            className: ComponentName,
-            binder: IBinder) {
+        override fun onServiceConnected(className: ComponentName, binder: IBinder) {
             Log.d(TAG, "ServiceConnectionHandler.onServiceConnected()")
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             val demoBinder = binder as DemoBinder
