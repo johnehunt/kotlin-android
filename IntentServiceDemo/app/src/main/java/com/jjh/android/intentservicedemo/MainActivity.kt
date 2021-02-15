@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Button handler methods
-    fun onClickStartService(v: View?) {
+    fun onClickStartService(v: View) {
         // Create intent to launch service
         val intent = Intent(this, LoggerIntentService::class.java)
         startService(intent)
