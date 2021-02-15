@@ -67,7 +67,7 @@ class ExampleUnitTest {
     @Test
     fun strings_are_equals() {
         val s1 = "Ginger Biscuit"
-        val s2 = "Choclate Biscuit"
+        val s2 = "Chocolate Biscuit"
         assertThat(s1, equalTo(s2))
     }
 

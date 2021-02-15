@@ -39,18 +39,24 @@ class BoardTest {
     @Test
     fun addMoveAMoveToTheBoardAt00() {
         val move = Move(0, 0, X)
-        board!!.addMove(move)
-        Assert.assertFalse("cell should contain a counter", board!!.isCellEmpty(0, 0))
-        Assert.assertTrue("cell should contain counter", board!!.cellContains(X, 0, 0))
+        board?.run {
+            addMove(move)
+            Assert.assertFalse("cell should contain a counter", isCellEmpty(0, 0))
+            Assert.assertTrue("cell should contain counter", cellContains(X, 0, 0))
+        }
     }
 
     @Test
     fun whenCreatedCellsAreAllEmpty() {
-        Assert.assertTrue("cell should be empty at start", board!!.isCellEmpty(0, 0))
+        board?.run{
+            Assert.assertTrue("cell should be empty at start", isCellEmpty(0, 0))
+        }
     }
 
     @Test
     fun whenCreatedBoardIsNotFull() {
-        Assert.assertFalse("board should not be full at start", board!!.isFull)
+        board?.run {
+            Assert.assertFalse("board should not be full at start", isFull)
+        }
     }
 }
