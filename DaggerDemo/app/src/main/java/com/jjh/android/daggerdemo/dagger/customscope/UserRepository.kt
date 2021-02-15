@@ -19,4 +19,5 @@ fun main(args: Array<String>) {
     val repo2 = component.getUserRepository()
 
     println("repo1 == repo2: ${repo1 == repo2}")
+
 }

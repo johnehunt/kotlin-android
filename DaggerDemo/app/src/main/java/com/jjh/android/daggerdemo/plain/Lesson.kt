@@ -1,34 +1,29 @@
 package com.jjh.android.daggerdemo.plain
 
-class Lecturer() {
+class Lecturer {
     val name: String = "John"
     override fun toString(): String {
         return "Lecturer($name)"
     }
 }
 
-class Course() {
+class Course {
     val title: String = "OOP for Beginners"
 }
 
-class Students() {
+class Students {
     val names = listOf("Denise", "Phoebe", "Adam", "Jasmine")
     override fun toString(): String {
         return "Students($names)"
     }
 }
 
-class BasicLesson() {
+class BasicLesson {
 
-    val course: Course
-    val lecturer: Lecturer
-    val students: Students
+    val course: Course = Course()
+    val lecturer: Lecturer = Lecturer()
+    val students: Students = Students()
 
-    init {
-        course = Course()
-        lecturer = Lecturer()
-        students = Students()
-    }
     fun presentClass() {
         println("$lecturer takes the class '${course.title}' for $students")
     }

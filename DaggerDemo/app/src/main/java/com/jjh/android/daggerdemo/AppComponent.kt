@@ -15,7 +15,7 @@ class RegistrationModel @Inject constructor(private val userManager: UserManager
 
 class UserManager @Inject constructor(val context: Context) {
     fun logMe() {
-        Log.d("DaggerDemo", "UserManager: ${context.toString()}")
+        Log.d("DaggerDemo", "UserManager: ${context}")
         Log.d("DaggerDemo", "UserManager.logMe")
     }
 }

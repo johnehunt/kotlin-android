@@ -1,6 +1,6 @@
 package com.jjh.android.daggerdemo.plain
 
-fun main(args: Array<String>) {
+fun main() {
 
     // Externalising the dependencies for Lesson
     val lecturer = Lecturer()
