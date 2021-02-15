@@ -6,8 +6,6 @@ import android.os.Handler
 import android.os.ResultReceiver
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,23 +36,22 @@ class MainActivity : AppCompatActivity() {
     // Button handler methods
     fun onClickStartService(v: View?) {
         Log.d(TAG, "onClickStartService()")
-        val numberToCalculate = inputAsInt
-        // Create intent to launch service
-        val intent = Intent(this, FactorialCalculationService::class.java)
-        // Register the receiver
-        intent.putExtra(FactorialCalculationService.RECEIVER, receiver)
-        // Add data to be used by service
-        intent.putExtra(FactorialCalculationService.NUMBER, numberToCalculate)
-        // Start the service
-        startService(intent)
+        val inputString = input.text.toString()
+        if (inputString != "") {
+            val numberToCalculate = inputString.toInt()
+            // Create intent to launch service
+            val intent = Intent(this, FactorialCalculationService::class.java)
+            // Register the receiver
+            intent.putExtra(FactorialCalculationService.RECEIVER, receiver)
+            // Add data to be used by service
+            intent.putExtra(FactorialCalculationService.NUMBER, numberToCalculate)
+            // Start the service
+            startService(intent)
+        } else {
+            Toast.makeText(this, "You need to enter a value", Toast.LENGTH_LONG).show()
+        }
     }
 
-    private val inputAsInt: Int
-        private get() {
-            Log.d(TAG, "getInputAsInt()")
-            val inputString = input.text.toString()
-            return inputString.toInt()
-        }
 
     /**
      * Inner class to handle result
@@ -84,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-            super.onReceiveResult(resultCode, resultData)
         }
 
     }

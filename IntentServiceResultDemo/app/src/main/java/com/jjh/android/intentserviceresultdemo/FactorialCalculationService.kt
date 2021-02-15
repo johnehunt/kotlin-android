@@ -31,18 +31,19 @@ class FactorialCalculationService :
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
-        val numberToCalculate = intent!!.getIntExtra(NUMBER, 0)
-        val result = factorial(numberToCalculate)
+        intent?.let {
+            val numberToCalculate = it.getIntExtra(NUMBER, 0)
+            val result = factorial(numberToCalculate)
 
-        // Now need to return result from the service
-        val receiver = intent.getParcelableExtra<ResultReceiver>(RECEIVER)
+            // Now need to return result from the service
+            val receiver = it.getParcelableExtra<ResultReceiver>(RECEIVER)
+            // Set up data to return
+            val bundle = Bundle()
+            bundle.putInt(RESULT, result)
 
-        // Set up data to return
-        val bundle = Bundle()
-        bundle.putInt(RESULT, result)
-
-        // Return results and indication of status
-        receiver.send(SUCCESS, bundle)
+            // Return results and indication of status
+            receiver.send(SUCCESS, bundle)
+        }
     }
 
     private fun factorial(num: Int): Int {
@@ -51,7 +52,7 @@ class FactorialCalculationService :
         if (num > 0) {
             result = 1
             for (i in 1..num) {
-                result = result * i
+                result *= i
             }
         }
         return result
