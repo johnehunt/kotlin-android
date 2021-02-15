@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity() {
             if (REQUEST_CODE == returnedRequestCode) {
                 // SubActivity is over - see what happened
                 if (resultCode == Activity.RESULT_OK) {
-                    val bundle = data!!.extras
-                    val result = bundle!!.getString("result")
-                    resultTextView!!.text = result
+                    val bundle = data?.extras
+                    val result = bundle?.getString("result")
+                    resultTextView.text = result
                 } else {
                     // user pressed the BACK button
                     textView.text = "Selection CANCELLED!"
