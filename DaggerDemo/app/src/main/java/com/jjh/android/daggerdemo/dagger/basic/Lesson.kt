@@ -10,7 +10,7 @@ class Lecturer @Inject constructor() {
 }
 
 class Course @Inject constructor() {
-    val title: String = "OOP for Beginners"
+    val title: String = "Kotlin for Beginners"
 }
 
 class Students @Inject constructor() {
