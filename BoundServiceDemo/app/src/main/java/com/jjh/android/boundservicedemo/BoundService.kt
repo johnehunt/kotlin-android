@@ -22,6 +22,11 @@ class BoundService : Service() {
             get() = this@BoundService
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        Log.d(TAG, "onCreate()")
+    }
+
     override fun onBind(intent: Intent): IBinder? {
         Log.d(TAG, "onBind()")
         return binder
@@ -37,11 +42,6 @@ class BoundService : Service() {
         return true
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        Log.d(TAG, "onCreate()")
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "onDestroy()")
@@ -50,7 +50,7 @@ class BoundService : Service() {
     // Functionality offered by service
     val date: Date
         get() {
-            Log.d(TAG, "getDate()")
+            Log.d(TAG, "get Date")
             return Date()
         }
 
