@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.IBinder
 import android.util.Log
 
+/**
+ * Illustrates Standard Service
+ */
 class SampleService : Service() {
 
     companion object {
