@@ -5,15 +5,18 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.jjh.android.retrofitdemo.model.Person
-import com.jjh.android.retrofitdemo.service.PersonService
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+import com.jjh.android.retrofitdemo.model.Drivers
+import com.jjh.android.retrofitdemo.service.DriversService
+
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         // Note 10.0.22 is mapped to the localhost of the host machine
         // as the Emulator is running a Virtual Machine where localhost
         // is the mobile device
-        private const val URL = "http://10.0.2.2:8080/"
+        // private const val URL = "http://10.0.2.2:8080/"
+        private const val URL = "http://ergast.com/"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +40,13 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onClick")
         val b: Button = view as Button
         b.isClickable = false
-        getUsers()
+        getDrivers()
     }
 
-    private fun getUsers() {
-        Log.d(TAG, "getUsers")
+    private fun getDrivers() {
+        Log.d(TAG, "getDrivers")
 
-        Log.d(TAG, "getUsers - building Retrofit object")
+        Log.d(TAG, "getDrivers - building Retrofit object")
         val httpClient = OkHttpClient()
         val retrofit = Retrofit.Builder()
                 .baseUrl(URL)
@@ -50,26 +54,27 @@ class MainActivity : AppCompatActivity() {
                 .client(httpClient)
                 .build()
 
-        Log.d(TAG, "getUsers - building PersonService")
-        val service: PersonService = retrofit.create(PersonService::class.java)
+        Log.d(TAG, "getDrivers - building DriversService")
+        val service: DriversService = retrofit.create(DriversService::class.java)
 
-        Log.d(TAG, "getUsers - creating the service call")
-        val serviceCall: Call<List<Person>> = service.getUsers()
+        Log.d(TAG, "getDrivers - creating the service call")
+        val serviceCall: Call<Drivers> = service.getDrivers()
 
-        Log.d(TAG, "getUsers - invoke service call asynchronously")
-        serviceCall.enqueue(object : Callback<List<Person>> {
+        Log.d(TAG, "getDrivers - invoke service call asynchronously")
+        serviceCall.enqueue(object : Callback<Drivers> {
 
-            override fun onResponse(call: Call<List<Person>>, response: Response<List<Person>>) {
+            override fun onResponse(call: Call<Drivers>, response: Response<Drivers>) {
                 Log.d(TAG, "onResponse")
-                val persons: List<Person>? = response.body()
-                persons?.apply {
+                Log.d(TAG, "response code: ${response.code()}")
+                val body: Drivers? = response.body()
+                body?.apply {
                     editText.setText(this.toString())
                 }
             }
 
-            override fun onFailure(call: Call<List<Person>>, throwable: Throwable?) {
+            override fun onFailure(call: Call<Drivers>, throwable: Throwable?) {
                 Log.d(TAG, "onFailure")
-                Log.d(TAG, throwable?.message)
+                Log.d(TAG, throwable!!.message)
             }
         })
     }
