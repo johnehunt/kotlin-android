@@ -32,7 +32,7 @@ interface ProgrammeComponent {
     fun getProgramme(): Programme
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val component: ProgrammeComponent = DaggerProgrammeComponent.create()
     val programme = component.getProgramme()
     programme.giveLectures()
