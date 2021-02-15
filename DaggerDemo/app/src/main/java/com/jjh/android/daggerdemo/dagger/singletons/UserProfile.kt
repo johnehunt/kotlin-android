@@ -5,8 +5,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class UserProfile @Inject constructor() {
-}
+class UserProfile @Inject constructor()
 
 @Singleton
 @Component
