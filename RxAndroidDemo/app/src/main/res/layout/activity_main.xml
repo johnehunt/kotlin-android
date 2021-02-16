@@ -21,5 +21,12 @@
         android:layout_height="wrap_content"
         android:text="Click Me" />
 
+    <Button
+        android:id="@+id/serviceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onServiceButtonClick"
+        android:text="Get Data" />
+
 
 </LinearLayout>
