@@ -3,10 +3,10 @@ package com.jjh.android.daggerdemo.dagger.customscope
 import dagger.Component
 import javax.inject.Inject
 
-@MyCustomScope
+@FragmentScope
 class UserRepository @Inject constructor()
 
-@MyCustomScope
+@FragmentScope
 @Component
 interface UserRepositoryComponent {
     fun getUserRepository(): UserRepository
