@@ -28,13 +28,13 @@ class StatusManager @Inject constructor() {
 
 // Definition of a Dagger component to be used by application
 @Component
-interface AppComponent {
+interface ApplicationComponent {
 
     // Factory to create instances of the AppComponent
     @Component.Factory
     interface Factory {
         // With @BindsInstance, the Context passed in will be available in the graph
-        fun create(@BindsInstance context: Context): AppComponent
+        fun create(@BindsInstance context: Context): ApplicationComponent
     }
 
     // Classes that can have dependencies injected by this Component
