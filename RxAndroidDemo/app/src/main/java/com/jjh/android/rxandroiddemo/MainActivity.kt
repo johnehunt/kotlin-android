@@ -5,7 +5,6 @@ import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
