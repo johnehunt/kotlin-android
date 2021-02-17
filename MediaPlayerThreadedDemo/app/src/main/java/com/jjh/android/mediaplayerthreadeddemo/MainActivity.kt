@@ -13,25 +13,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jjh.android.mediaplayerthreadeddemo.PlayerService.DemoBinder
 
+import kotlinx.android.synthetic.main.activity_main.*
+
 class MainActivity : AppCompatActivity() {
 
     var service: PlayerService? = null
-    private var pause: Button? = null
-    private var play: Button? = null
-    private var stop: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Setup button references
-        pause = findViewById(R.id.pause)
-        play = findViewById(R.id.play)
-        stop = findViewById(R.id.stop)
-
         // Determine which buttons are enabled at start
-        pause?.setEnabled(false)
-        stop?.setEnabled(false)
+        pause.isEnabled = false
+        stop.isEnabled = false
 
         // Create intent to bind to service
         val intent = Intent(this, PlayerService::class.java)
@@ -52,9 +46,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Enable / Disable appropriate buttons
-        pause!!.isEnabled = true
-        play!!.isEnabled = false
-        stop!!.isEnabled = true
+        pause.isEnabled = true
+        play.isEnabled = false
+        stop.isEnabled = true
     }
 
     fun onPauseButtonClick(v: View?) {
@@ -62,9 +56,9 @@ class MainActivity : AppCompatActivity() {
         service!!.pause()
 
         // Enable / Disable buttons
-        pause!!.isEnabled = false
-        play!!.isEnabled = true
-        stop!!.isEnabled = false
+        pause.isEnabled = false
+        play.isEnabled = true
+        stop.isEnabled = false
     }
 
     fun onStopButtonClick(v: View?) {
@@ -83,17 +77,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Enable / Disable buttons
-        pause!!.isEnabled = false
-        play!!.isEnabled = true
-        stop!!.isEnabled = false
+        pause.isEnabled = false
+        play.isEnabled = true
+        stop.isEnabled = false
     }
 
     // Service Connection Listener
     private inner class ServiceConnectionHandler : ServiceConnection {
         override fun onServiceConnected(
             className: ComponentName,
-            binder: IBinder
-        ) {
+            binder: IBinder) {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
             val demoBinder = binder as DemoBinder
             service = demoBinder.service
