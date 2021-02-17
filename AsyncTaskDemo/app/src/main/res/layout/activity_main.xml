@@ -6,7 +6,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_time"
+        android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10pt"
@@ -17,28 +17,30 @@
         android:layout_marginLeft="10dip"
         android:text="Sleep time in Seconds:"/>
     <EditText
-        android:id="@+id/in_time"
+        android:id="@+id/inTime"
         android:layout_width="150dip"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
-        android:layout_toRightOf="@id/tv_time"
-        android:layout_alignTop="@id/tv_time"
+        android:layout_toRightOf="@id/tvTime"
+        android:layout_alignTop="@id/tvTime"
         android:inputType="number"
         />
     <Button
-        android:id="@+id/btn_run"
+        android:id="@+id/btnRun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Run Async task"
-        android:layout_below="@+id/in_time"
+        android:layout_below="@+id/inTime"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp" />
+        android:layout_marginTop="64dp"
+        android:onClick="onButtonClick" />
+
     <TextView
-        android:id="@+id/tv_result"
+        android:id="@+id/finalResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="7pt"
-        android:layout_below="@+id/btn_run"
+        android:layout_below="@+id/btnRun"
         android:layout_centerHorizontal="true" />
 
 
