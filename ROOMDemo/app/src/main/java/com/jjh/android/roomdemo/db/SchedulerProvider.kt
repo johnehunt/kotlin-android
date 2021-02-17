@@ -11,14 +11,14 @@ interface SchedulerProvider {
     fun newThread(): Scheduler
 }
 
-class DefaultSchedulerProvider : SchedulerProvider {
+object DefaultSchedulerProvider : SchedulerProvider {
     override fun io(): Scheduler = Schedulers.io()
     override fun computation(): Scheduler = Schedulers.computation()
     override fun ui(): Scheduler = AndroidSchedulers.mainThread()
     override fun newThread(): Scheduler = Schedulers.newThread()
 }
 
-class TestSchedulerProvider : SchedulerProvider {
+object TestSchedulerProvider : SchedulerProvider {
     override fun io(): Scheduler = Schedulers.trampoline()
     override fun computation(): Scheduler = Schedulers.trampoline()
     override fun ui(): Scheduler = Schedulers.trampoline()

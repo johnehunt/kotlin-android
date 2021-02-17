@@ -29,7 +29,7 @@ class FriendRepositoryTest {
 
     init {
         val application = ApplicationProvider.getApplicationContext<Context>() as Application
-        repository = FriendRepository(application, TestSchedulerProvider())
+        repository = FriendRepository(application, TestSchedulerProvider)
     }
 
     @After
@@ -109,6 +109,23 @@ class FriendRepositoryTest {
         Log.d(TAG, "Setting up test Observer")
         val testObserver = TestObserver<Int>()
         repository.deleteFriend(friend)
+            .observeOn(Schedulers.trampoline())
+            .subscribe(testObserver)
+        Log.d(TAG, "checking test observer")
+        testObserver.assertComplete()
+        testObserver.assertNoErrors()
+        testObserver.assertValueCount(1)
+        val result = testObserver.values()[0]
+        assertEquals(1, result)
+    }
+
+    @Test
+    // @Ignore
+    @Throws(Exception::class)
+    fun deleteFriendByIdTest() {
+        Log.d(TAG, "Setting up test Observer")
+        val testObserver = TestObserver<Int>()
+        repository.deleteFriendById(2)
             .observeOn(Schedulers.trampoline())
             .subscribe(testObserver)
         Log.d(TAG, "checking test observer")

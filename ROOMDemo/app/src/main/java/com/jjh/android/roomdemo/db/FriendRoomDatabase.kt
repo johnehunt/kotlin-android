@@ -13,13 +13,13 @@ abstract class FriendRoomDatabase : RoomDatabase() {
 
     companion object {
 
-        private var SINGLETON: FriendRoomDatabase? = null
+        private var _SINGLETON: FriendRoomDatabase? = null
 
-        internal fun getDatabase(context: Context): FriendRoomDatabase? {
-            if (SINGLETON == null) {
+        internal fun getDatabase(context: Context): FriendRoomDatabase {
+            if (_SINGLETON == null) {
                 synchronized(FriendRoomDatabase::class.java) {
-                    if (SINGLETON == null) {
-                        SINGLETON = Room.databaseBuilder(
+                    if (_SINGLETON == null) {
+                        _SINGLETON = Room.databaseBuilder(
                             context.applicationContext,
                             FriendRoomDatabase::class.java,
                             "friends_db"
@@ -27,7 +27,7 @@ abstract class FriendRoomDatabase : RoomDatabase() {
                     }
                 }
             }
-            return SINGLETON
+            return _SINGLETON!!
         }
     }
 }

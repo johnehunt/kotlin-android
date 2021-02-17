@@ -1,27 +1,23 @@
 package com.jjh.android.roomdemo.db
 
 import android.app.Application
-import android.os.AsyncTask
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.jjh.android.roomdemo.model.Friend
-import io.reactivex.rxjava3.annotations.NonNull
 import io.reactivex.rxjava3.core.Observable
 
 class FriendRepository(private val application: Application,
-                       private val schedulerProvider: SchedulerProvider = DefaultSchedulerProvider()) {
+                       private val schedulerProvider: SchedulerProvider = DefaultSchedulerProvider) {
 
     companion object {
         private const val TAG = "FriendRepository"
     }
 
-    val searchResults = MutableLiveData<List<Friend>>()
-
     private var friendDao: FriendDao =
-        FriendRoomDatabase.getDatabase(application)?.friendDao()!!
+        FriendRoomDatabase.getDatabase(application).friendDao()
 
     fun close() {
-        FriendRoomDatabase.getDatabase(application)?.close()
+        FriendRoomDatabase.getDatabase(application).close()
     }
 
     fun insertFriend(friend: Friend): Observable<Long> {
@@ -56,6 +52,14 @@ class FriendRepository(private val application: Application,
     fun deleteFriend(friend: Friend): Observable<Int> {
         return Observable.create<Int> {
             val result = friendDao.delete(friend)
+            it.onNext(result)
+            it.onComplete()
+        }.subscribeOn(schedulerProvider.newThread())
+    }
+
+    fun deleteFriendById(id: Int): Observable<Int> {
+        return Observable.create<Int> {
+            val result = friendDao.deleteById(id)
             it.onNext(result)
             it.onComplete()
         }.subscribeOn(schedulerProvider.newThread())

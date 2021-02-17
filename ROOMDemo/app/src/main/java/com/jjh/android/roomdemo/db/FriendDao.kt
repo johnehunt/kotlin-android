@@ -28,6 +28,9 @@ interface FriendDao {
     @Delete
     fun delete(friend: Friend): Int
 
+    @Query("DELETE FROM friends WHERE id = :id")
+    fun deleteById(id: Int): Int
+
     @Delete
     fun deleteAll(vararg friends: Friend): Int
 
