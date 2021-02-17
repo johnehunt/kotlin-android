@@ -77,6 +77,8 @@ class MainActivity : AppCompatActivity() {
         }.subscribeOn(Schedulers.newThread())
             .observeOn(Schedulers.io())
             .doOnNext { Log.d(TAG, "next: $it") }
+            .doOnError { Log.d(TAG, "findFriendById error $it") }
+            .doOnComplete { Log.d(TAG, "findFriendById Completed") }
             .subscribe { textView.text = it.toString() }
 
     }
