@@ -2,7 +2,6 @@ package com.jjh.android.roomdemo.db
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.jjh.android.roomdemo.model.Friend
 import io.reactivex.rxjava3.core.Observable
 
@@ -13,7 +12,7 @@ class FriendRepository(private val application: Application,
         private const val TAG = "FriendRepository"
     }
 
-    private var friendDao: FriendDao =
+    private val friendDao: FriendDao =
         FriendRoomDatabase.getDatabase(application).friendDao()
 
     fun close() {
