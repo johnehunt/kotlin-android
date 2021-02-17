@@ -2,69 +2,63 @@ package com.jjh.android.roomdemo.db
 
 import android.app.Application
 import android.os.AsyncTask
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.jjh.android.roomdemo.model.Friend
+import io.reactivex.rxjava3.annotations.NonNull
+import io.reactivex.rxjava3.core.Observable
 
-class FriendRepository(private val application: Application) {
+class FriendRepository(private val application: Application,
+                       private val schedulerProvider: SchedulerProvider = DefaultSchedulerProvider()) {
+
+    companion object {
+        private const val TAG = "FriendRepository"
+    }
 
     val searchResults = MutableLiveData<List<Friend>>()
 
-    private var friendDao: FriendDao? =
-        FriendRoomDatabase.getDatabase(application)?.friendDao()
+    private var friendDao: FriendDao =
+        FriendRoomDatabase.getDatabase(application)?.friendDao()!!
 
     fun close() {
         FriendRoomDatabase.getDatabase(application)?.close()
     }
 
-    fun insertFriend(friend: Friend) {
-        val task = InsertAsyncTask(friendDao)
-        task.execute(friend)
+    fun insertFriend(friend: Friend): Observable<Long> {
+        return Observable.create<Long> {
+            val result = friendDao.insert(friend)
+            it.onNext(result)
+            it.onComplete()
+        }.subscribeOn(schedulerProvider.newThread())
     }
 
-    fun findAllFriends() {
-        val task = QueryAsyncTask(friendDao)
-        task.delegate = this
-        task.execute()
+    fun findAllFriends(): Observable<List<Friend>> {
+        return Observable.create<List<Friend>> {
+            val results = friendDao.findAll()
+            it.onNext(results)
+            it.onComplete()
+        }.subscribeOn(schedulerProvider.newThread())
+            .doOnNext { Log.d(TAG, "findAllFriendsObservable next: $it") }
+            .doOnError { Log.d(TAG, "findAllFriendsObservable error $it") }
+            .doOnComplete { Log.d(TAG, "findAllFriendsObservable Completed") }
     }
 
-    fun deleteFriend(friend: Friend) {
-        val task = DeleteAsyncTask(friendDao)
-        task.execute(friend)
+    fun findFriendById(id: Int): Observable<Friend> {
+        return Observable.create<Friend> {
+            Log.d(TAG, "findFriendById($id) - starting Observable")
+            val friend = friendDao.findById(id)
+            Log.d(TAG, "findFriendById($id) - search completed emitting data")
+            it.onNext(friend)
+            it.onComplete()
+        }.subscribeOn(schedulerProvider.newThread())
     }
 
-    // Delegate Callback member function
-    fun asyncFinished(results: List<Friend>) {
-        searchResults.value = results
-    }
-
-    // Handle insertions in the background
-    private class InsertAsyncTask(private val friendDao: FriendDao?): AsyncTask<Friend, Void, Void>() {
-        override fun doInBackground(vararg params: Friend): Void? {
-            friendDao?.insert(params[0])
-            return null
-        }
-    }
-
-    // Handle query tasks
-    private class QueryAsyncTask (val friendDao: FriendDao?): AsyncTask<String, Void, List<Friend>>() {
-        lateinit var delegate: FriendRepository
-
-        override fun doInBackground(vararg params: String?): List<Friend>? {
-            return friendDao?.findAll()
-        }
-
-        override fun onPostExecute(result: List<Friend>) {
-            super.onPostExecute(result)
-            delegate.asyncFinished(result)
-        }
-    }
-
-    // Handle deletions in the background
-    private class DeleteAsyncTask (private val friendDao: FriendDao?): AsyncTask<Friend, Void, Void>() {
-        override fun doInBackground(vararg params: Friend): Void? {
-            friendDao?.delete(params[0])
-            return null
-        }
+    fun deleteFriend(friend: Friend): Observable<Int> {
+        return Observable.create<Int> {
+            val result = friendDao.delete(friend)
+            it.onNext(result)
+            it.onComplete()
+        }.subscribeOn(schedulerProvider.newThread())
     }
 
 }

@@ -33,14 +33,14 @@ class FriendDAOTest {
     @Ignore
     @Throws(Exception::class)
     fun writeFriendAndReadIn() {
-        val friend = Friend(1, "John", "Hunt", 55)
+        val friend = Friend(123, "John", "Hunt", 56)
         friendDao?.insert(friend)
-        val foundFriend = friendDao?.findById(1)
+        val foundFriend = friendDao?.findById(123)
         foundFriend?.apply {
-            assertEquals(1, this.id)
+            assertEquals(123, this.id)
             assertEquals("John", this.firstName)
             assertEquals("Hunt", this.lastName)
-            assertEquals(55, this.age)
+            assertEquals(56, this.age)
         }
     }
 
@@ -48,10 +48,10 @@ class FriendDAOTest {
     @Ignore
     @Throws(Exception::class)
     fun writeFriendAndDelete() {
-        val friend = Friend(1, "John", "Hunt", 55)
+        val friend = Friend(123, "John", "Hunt", 56)
         friendDao?.delete(friend)
         val foundFriend = friendDao?.findById(123)
-        assertEquals(32, foundFriend)
+        assertEquals(56, foundFriend)
     }
 
 

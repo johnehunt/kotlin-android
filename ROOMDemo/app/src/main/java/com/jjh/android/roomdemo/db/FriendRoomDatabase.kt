@@ -7,11 +7,12 @@ import androidx.room.Database
 import com.jjh.android.roomdemo.model.Friend
 
 @Database(entities = [Friend::class], version = 1)
-abstract class FriendRoomDatabase: RoomDatabase() {
+abstract class FriendRoomDatabase : RoomDatabase() {
 
     abstract fun friendDao(): FriendDao
 
     companion object {
+
         private var SINGLETON: FriendRoomDatabase? = null
 
         internal fun getDatabase(context: Context): FriendRoomDatabase? {
@@ -21,7 +22,8 @@ abstract class FriendRoomDatabase: RoomDatabase() {
                         SINGLETON = Room.databaseBuilder(
                             context.applicationContext,
                             FriendRoomDatabase::class.java,
-                            "friends_db").build()
+                            "friends_db"
+                        ).build()
                     }
                 }
             }
