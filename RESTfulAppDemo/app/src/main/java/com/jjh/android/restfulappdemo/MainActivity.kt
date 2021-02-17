@@ -40,13 +40,13 @@ class MainActivity : AppCompatActivity() {
         GetRequestAsyncTask().execute()
     }
 
-    inner class GetRequestAsyncTask: AsyncTask<Void, Void, String>() {
+    inner class GetRequestAsyncTask: AsyncTask<Unit, Unit, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
             Log.d(TAG, "GetRequestAsyncTask.onPreExecute")
         }
 
-        override fun doInBackground(vararg params: Void?): String {
+        override fun doInBackground(vararg params: Unit): String {
             Log.d(TAG, "GetRequestAsyncTask.doInBackground")
             val client = OkHttpClient()
 
