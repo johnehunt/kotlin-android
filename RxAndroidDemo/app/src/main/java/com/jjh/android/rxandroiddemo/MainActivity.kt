@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onServiceButtonClick(v: View) {
-        Log.d(TAG, "onServiceButtonClick")
-        Log.d(TAG, "setting up Observable")
+        Log.d(TAG, "onServiceButtonClick()")
+        Log.d(TAG, "Setting up Observable")
 
         Observable.create<Int> {
             val client = OkHttpClient()
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
             val len = try {
                 val response: Response = client.newCall(request).execute()
-                response.body?.string()?.length?:-1
+                response.body?.string()?.length ?: -1
             } catch (e: Exception) {
                 Log.d(TAG, e.localizedMessage)
                 -1
@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             .doOnComplete { Log.d(TAG, "findFriendById Completed") }
             .subscribe { textView.text = it.toString() }
 
+        Log.d(TAG, "onServiceButtonClick - finished")
     }
 
 }
