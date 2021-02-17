@@ -3,7 +3,6 @@ package com.jjh.android.filedemoapp
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.io.BufferedReader
@@ -11,6 +10,7 @@ import java.io.IOException
 import java.io.InputStreamReader
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,12 +18,9 @@ class MainActivity : AppCompatActivity() {
         private const val FILENAME = "datafile.txt"
     }
 
-    private var textView: EditText? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        textView = findViewById(R.id.editText)
     }
 
     // Button handler functions
@@ -40,13 +37,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveText() {
-        val data: CharSequence = textView!!.text
+        val data = editText.text.toString()
         val charset = Charset.forName("UTF-8")
         try {
             openFileOutput(
                 FILENAME,
                 Context.MODE_PRIVATE
-            ).use { fos -> fos.write(data.toString().toByteArray(charset)) }
+            ).use { fos -> fos.write(data.toByteArray(charset)) }
         } catch (exp: IOException) {
             showErrorMessage(exp.message)
         }
@@ -70,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 showErrorMessage(exp.message)
             } finally {
                 val contents = stringBuilder.toString()
-                textView!!.setText(contents)
+                editText.setText(contents)
             }
         } catch (exp: IOException) {
             showErrorMessage(exp.message)
@@ -78,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearText() {
-        textView!!.setText("")
+        editText.setText("")
     }
 
     private fun showErrorMessage(msg: String?) {
