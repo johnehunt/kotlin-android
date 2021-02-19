@@ -97,7 +97,7 @@ class PlayerService : Service() {
         } catch (exp: Exception) {
             Toast.makeText(
                 applicationContext,
-                "Problem starting source " + exp.message,
+                "Problem stopping source " + exp.message,
                 Toast.LENGTH_LONG
             ).show()
         }
