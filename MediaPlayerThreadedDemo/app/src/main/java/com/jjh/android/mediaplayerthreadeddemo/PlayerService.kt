@@ -8,7 +8,6 @@ import android.os.HandlerThread
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
-import com.jjh.android.mediaplayerthreadeddemo.PlayerService
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
