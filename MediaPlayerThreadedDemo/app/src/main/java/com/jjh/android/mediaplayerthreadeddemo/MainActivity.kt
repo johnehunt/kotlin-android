@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Button Handler methods
-    fun onPlayButtonClick(v: View?) {
+    fun onPlayButtonClick(v: View) {
         Toast.makeText(applicationContext, "Playing sound", Toast.LENGTH_SHORT).show()
         try {
             service!!.start()
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         stop.isEnabled = true
     }
 
-    fun onPauseButtonClick(v: View?) {
+    fun onPauseButtonClick(v: View) {
         Toast.makeText(applicationContext, "Pausing sound", Toast.LENGTH_SHORT).show()
         service!!.pause()
 
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         stop.isEnabled = false
     }
 
-    fun onStopButtonClick(v: View?) {
+    fun onStopButtonClick(v: View) {
         Toast.makeText(applicationContext, "Stopping sound", Toast.LENGTH_SHORT).show()
         service!!.stop()
         try {
