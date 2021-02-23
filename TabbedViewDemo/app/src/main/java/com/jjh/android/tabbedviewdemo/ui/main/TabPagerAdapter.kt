@@ -31,7 +31,7 @@ class TabPagerAdapter(private val context: Context,
         return TAB_FRAGMENTS[position]
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         Log.d(TAG, "getPageTitle($position)")
         return context.resources.getString(TAB_TITLES[position])
     }
