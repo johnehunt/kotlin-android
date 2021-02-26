@@ -14,6 +14,7 @@ class ShoppingService(@Named("serverURL") val serverUrl: String) {
 @Module
 class ShoppingServiceModule {
     @Provides
+    @Singleton
     fun shoppingServiceProvider(@Named("serverURL") serverUrl: String) = ShoppingService(serverUrl)
 
     @Provides

@@ -3,6 +3,8 @@ package com.jjh.android.daggerdemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.jjh.android.daggerdemo.dagger.services.ShoppingService
+import com.jjh.android.daggerdemo.dagger.services.UserService
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -12,29 +14,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Inject
-    lateinit var registrationModel: RegistrationModel
+    lateinit var shoppingService: ShoppingService
 
     @Inject
-    lateinit var statusManager: StatusManager
+    lateinit var userService: UserService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate")
 
         Log.d(TAG, "onCreate - Triggering Dagger to inject into the Activity")
-        // Ask Dagger to inject our dependencies
         (application as MyApplication).appComponent.inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Log.d(TAG, "onCreate - accessing injected objects")
-        Log.d(TAG, "onCreate - $registrationModel")
-        Log.d(TAG, "onCreate - $statusManager")
-
-        registrationModel.logMe()
-
-        Log.d(TAG, "onCreate - accessing injected object")
-        statusManager.logStatus()
+        Log.d(TAG, "onCreate - ${userService}")
+        Log.d(TAG, "onCreate - ${shoppingService}")
 
     }
 

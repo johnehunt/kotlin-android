@@ -1,4 +1,4 @@
-package com.jjh.android.daggerdemo.dagger.customscope
+package com.jjh.android.daggerdemo.dagger.xxcustomscope
 
 import dagger.Component
 import javax.inject.Inject

@@ -13,5 +13,6 @@ class UserService {
 @Module
 class UserServiceModule {
     @Provides
+    @Singleton
     fun userServiceProvider() = UserService()
 }
