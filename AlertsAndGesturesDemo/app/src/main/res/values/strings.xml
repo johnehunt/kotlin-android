@@ -4,4 +4,6 @@
     <string name="name">Name</string>
     <string name="show_dialog">Show Dialog</string>
     <string name="message">message</string>
+    <string name="show_time_picker">Show Time Picker</string>
+    <string name="show_date_picker">Show Date Picker</string>
 </resources>

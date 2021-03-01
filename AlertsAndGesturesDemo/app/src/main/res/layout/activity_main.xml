@@ -47,14 +47,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="showDatePicker"
-            android:text="Show Date Picker" />
+            android:text="@string/show_date_picker" />
 
         <Button
             android:id="@+id/timePickerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="showTimePicker"
-            android:text="Show Time Picker" />
+            android:text="@string/show_time_picker" />
     </LinearLayout>
 
 </LinearLayout>
