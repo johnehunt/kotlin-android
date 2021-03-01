@@ -28,13 +28,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate()")
-
         // Set up receiver
         receiver = FactorialResultReceiver(Handler())
     }
 
     // Button handler methods
-    fun onClickStartService(v: View?) {
+    fun onClickStartService(v: View) {
         Log.d(TAG, "onClickStartService()")
         val inputString = input.text.toString()
         if (inputString != "") {
@@ -60,7 +59,7 @@ class MainActivity : AppCompatActivity() {
      * .onReceiveResult method will be called from the thread running
      * handler if given, or from an arbitrary thread if null.
      */
-    private inner class FactorialResultReceiver(handler: Handler?) :
+    private inner class FactorialResultReceiver(handler: Handler) :
         ResultReceiver(handler) {
 
         init {
