@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-    private var receiver: ResultReceiver? = null
+    private lateinit var receiver: ResultReceiver
 
     // Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
