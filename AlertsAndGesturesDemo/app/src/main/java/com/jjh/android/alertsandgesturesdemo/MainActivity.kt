@@ -36,19 +36,19 @@ class MainActivity : AppCompatActivity() {
         // Obtain a builder instance
         val builder = AlertDialog.Builder(this)
         // configure builder settings
-        builder.setTitle("Exit")
-        builder.setMessage("Do you wish to Exit?")
+        builder.setTitle("Continue")
+        builder.setMessage("Do you want to Continue?")
         // set three option buttons
-        builder.setPositiveButton("Yes") { dialog, whichButton ->
-            val msg = "YES $whichButton"
+        builder.setPositiveButton("Yes") { dialog, button ->
+            val msg = "YES $button"
             message.text = msg
         }
-        builder.setNeutralButton("Cancel") { dialog, whichButton ->
-            val msg = "CANCEL $whichButton"
+        builder.setNeutralButton("Cancel") { dialog, button ->
+            val msg = "CANCEL $button"
             message.text = msg
         }
-        builder.setNegativeButton("NO") { dialog, whichButton ->
-            val msg = "NO $whichButton"
+        builder.setNegativeButton("NO") { dialog, button ->
+            val msg = "NO $button"
             message.text = msg
         }
         val dialog = builder.create()
