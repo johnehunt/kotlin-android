@@ -19,10 +19,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun onPickContactClick(v: View?) {
-        // Tell it that its requestCode (nickname) is 222
+    fun onPickContactClick(v: View) {
         val myData = editText.text.toString()
         val intent = Intent(Intent.ACTION_PICK, Uri.parse(myData))
+        // Start the activity to generate a result passing in result code
         startActivityForResult(intent, REQUEST_CODE)
     }
 
@@ -34,10 +34,12 @@ class MainActivity : AppCompatActivity() {
         if (returnedRequestCode == REQUEST_CODE) {
             // 222 is our friendly contact-picker activity
             if (resultCode == Activity.RESULT_OK) {
-                val selectedContact = data!!.dataString
-                // it will return an URI that looks like:
-                // content://contacts/people/n where n is the selected contacts' ID
-                label.text = selectedContact
+                data?.run{
+                    val selectedContact = this.dataString
+                    // it will return an URI that looks like:
+                    // content://contacts/people/n where n is the selected contacts' ID
+                    label.text = selectedContact
+                }
             } else {
                 // user pressed the BACK button
                 label.text = "Selection CANCELLED $returnedRequestCode, $resultCode"
