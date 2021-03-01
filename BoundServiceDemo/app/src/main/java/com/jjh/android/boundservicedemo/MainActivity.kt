@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var service: BoundService? = null
 
     /** Defines callbacks for service binding, passed to bindService()  */
-    private var connection: ServiceConnection? = null
+    private lateinit var connection: ServiceConnection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
