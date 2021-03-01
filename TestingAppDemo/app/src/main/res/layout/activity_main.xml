@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="0,0"
+                android:onClick="onButtonClick"
                 android:text=" " />
 
             <Button
@@ -40,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="0,1"
+                android:onClick="onButtonClick"
                 android:text=" " />
 
             <Button
@@ -47,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="0,2"
+                android:onClick="onButtonClick"
                 android:text=" " />
         </TableRow>
 
@@ -62,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="1,0"
+                android:onClick="onButtonClick"
                 android:text=" " />
 
             <Button
@@ -69,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="1,1"
+                android:onClick="onButtonClick"
                 android:text=" " />
 
             <Button
@@ -76,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="1,2"
+                android:onClick="onButtonClick"
                 android:text=" " />
         </TableRow>
 
@@ -92,6 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="2,0"
+                android:onClick="onButtonClick"
                 android:text=" " />
 
             <Button
@@ -99,6 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="2,1"
+                android:onClick="onButtonClick"
                 android:text=" " />
 
             <Button
@@ -106,15 +114,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="2,2"
+                android:onClick="onButtonClick"
                 android:text=" " />
         </TableRow>
     </TableLayout>
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/restartButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Restart"
+        android:onClick="onRestartButtonClick"
         android:textSize="30dp" />
 
 </LinearLayout>

@@ -40,7 +40,7 @@ class MainActivityTest {
 
     @Test
     fun testClickResetButtonIsThenDisabled() {
-        Espresso.onView(ViewMatchers.withId(R.id.button9))
+        Espresso.onView(ViewMatchers.withId(R.id.restartButton))
             .check(ViewAssertions.matches(Matchers.not(ViewMatchers.isEnabled())))
     }
 

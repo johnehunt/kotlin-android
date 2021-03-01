@@ -8,27 +8,39 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
+import kotlinx.android.synthetic.main.activity_main.*
+
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
     init {
-        Log.d(this.javaClass.simpleName, "constructor()")
+        Log.d(TAG, "init{}")
     }
 
     var board: Board = Board()
         private set
 
-    private var restartButton: Button? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "onCreate()")
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-    internal inner class ButtonHandler : View.OnClickListener {
-        override fun onClick(v: View) {
-            Log.d(
-                this.javaClass.simpleName,
-                "MainActivity.ButtonHandler.onClick()"
-            )
+        // Disable restart
+        restartButton.isEnabled = false
+
+        // Make first move
+        setupNewBoard()
+    }
+
+    private fun onButtonClick(v: View) {
+            Log.d(TAG, "onButtonClick()")
             val buttonClicked = v as Button
             val buttonText = buttonClicked.text.toString()
             if (buttonText != " ") {
-                Toast.makeText(this@MainActivity, "Cell is already in use!", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Cell is already in use!", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 val player = board.humanPlayer
@@ -43,75 +55,26 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
     }
 
-    internal inner class RestartButtonHandler : View.OnClickListener {
-        override fun onClick(v: View) {
-            Log.d(
-                this.javaClass.simpleName,
-                "MainActivity.RestartButtonHandler.onClick()"
-            )
+    private fun onRestartButtonClick(v: View) {
+            Log.d(TAG, "onRestartButtonClick()")
             setupNewBoard()
-            var button = findViewById<Button>(R.id.button0)
-            button.text = " "
-            button = findViewById(R.id.button1)
-            button.text = " "
-            button = findViewById(R.id.button2)
-            button.text = " "
-            button = findViewById(R.id.button3)
-            button.text = " "
-            button = findViewById(R.id.button4)
-            button.text = " "
-            button = findViewById(R.id.button5)
-            button.text = " "
-            button = findViewById(R.id.button6)
-            button.text = " "
-            button = findViewById(R.id.button7)
-            button.text = " "
-            button = findViewById(R.id.button8)
+            button0.text = " "
+            button1.text = " "
+            button2.text = " "
+            button3.text = " "
+            button4.text = " "
+            button5.text = " "
+            button6.text = " "
+            button7.text = " "
+            button8.text = " "
             restartButton!!.isEnabled = false
-        }
-    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(this.javaClass.simpleName, "onCreate()")
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val handler = ButtonHandler()
-
-        // Setup buttons - all buttons use the same handler
-        var button = findViewById<Button>(R.id.button0)
-        button.setOnClickListener(handler)
-        button = findViewById(R.id.button1)
-        button.setOnClickListener(handler)
-        button = findViewById(R.id.button2)
-        button.setOnClickListener(handler)
-        button = findViewById(R.id.button3)
-        button.setOnClickListener(handler)
-        button = findViewById(R.id.button4)
-        button.setOnClickListener(handler)
-        button = findViewById(R.id.button5)
-        button.setOnClickListener(handler)
-        button = findViewById(R.id.button6)
-        button.setOnClickListener(handler)
-        button = findViewById(R.id.button7)
-        button.setOnClickListener(handler)
-        button = findViewById(R.id.button8)
-        button.setOnClickListener(handler)
-
-        // Disable restart
-        restartButton = findViewById(R.id.button9)
-        restartButton!!.setOnClickListener(RestartButtonHandler())
-        restartButton!!.setEnabled(false)
-
-        // Make first move
-        setupNewBoard()
     }
 
     private fun setupNewBoard() {
-        Log.d(this.javaClass.simpleName, "setupNewBoard()")
+        Log.d(TAG, "setupNewBoard()")
         board = Board()
         if (board.firstPlayer!!.isAutomatedPlayer) {
             makeComputerMove()
@@ -119,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun makeComputerMove(): Button {
-        Log.d(this.javaClass.simpleName, "makeComputerMove()")
+        Log.d(TAG, "makeComputerMove()")
         val cp = board.computerPlayer as ComputerPlayer
         val move = cp.move
         board.addMove(move)
@@ -132,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkGameStatus(player: Player, buttonClicked: Button): Boolean {
-        Log.d(this.javaClass.simpleName, "checkGameStatus()")
+        Log.d(TAG, "checkGameStatus()")
         val counter = player.counter
         val move = Move(getButtonRow(buttonClicked), getButtonCol(buttonClicked), counter)
         board.addMove(move)
@@ -150,8 +113,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showWinnerMessage(player: Player) {
-        Log.d(this.javaClass.simpleName, "showWinnerMessage()")
-        Toast.makeText(this@MainActivity, "Well Done $player WON!!", Toast.LENGTH_LONG)
+        Log.d(TAG, "showWinnerMessage()")
+        Toast.makeText(this, "Well Done $player WON!!", Toast.LENGTH_LONG)
             .show()
     }
 
