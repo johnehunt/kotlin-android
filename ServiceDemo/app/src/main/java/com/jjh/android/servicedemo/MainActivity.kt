@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-    private var startServiceIntent: Intent? = null
+    private lateinit var startServiceIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Button handler methods
-    fun onStartButtonClick(v: View?) {
+    fun onStartButtonClick(v: View) {
         try {
             Log.d(TAG, "Starting service!")
             startServiceIntent = Intent(this, SampleService::class.java)
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onStopButtonClick(v: View?) {
+    fun onStopButtonClick(v: View) {
         try {
             Log.d(TAG, "Stopping service!")
             stopService(startServiceIntent)
