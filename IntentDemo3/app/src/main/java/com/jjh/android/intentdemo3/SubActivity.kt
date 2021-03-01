@@ -19,7 +19,7 @@ class SubActivity : AppCompatActivity() {
         // Retrieve data sent by parent
         val myBundle: Bundle? = intent.extras
         // Extract the individual data parts of the bundle
-        data = myBundle?.getString("msg")
+        data = myBundle?.getString("msg") ?: "No Message"
     }
 
     fun onClickSendResponse(v: View?) {

@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun onClickInvokeSubActivity(v: View?) {
+    fun onClickInvokeSubActivity(v: View) {
         try {
             // create an Intent to talk to Sub-Activity
             val intent = Intent(this, SubActivity::class.java)
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 // SubActivity is over - see what happened
                 if (resultCode == Activity.RESULT_OK) {
                     val bundle = data?.extras
-                    val result = bundle?.getString("result")
+                    val result = bundle?.getString("result") ?: "No Result"
                     resultTextView.text = result
                 } else {
                     // user pressed the BACK button
