@@ -9,21 +9,26 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MyActivity"
+        // Store fragment instances so that they can be reused
+        // make use of lifecycle member functions to handle
+        // setting / resetting any state, behaviour etc.
+        private val FRAGMENT_ONE = FragmentOne()
+        private val FRAGMENT_TWO = FragmentTwo()
     }
 
-    fun onFragmentOneButtonClick(v: View?) {
+    fun onFragmentOneButtonClick(v: View) {
         Log.d(TAG, "onClick()")
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_layout, FragmentOne())
+        transaction.replace(R.id.fragment_layout, FRAGMENT_ONE)
         transaction.commit()
     }
 
-    fun onFragmentTwoButtonClick(v: View?) {
+    fun onFragmentTwoButtonClick(v: View) {
         Log.d(TAG, "onClick()")
         // Uses flow style behaviour for concise code
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_layout, FragmentTwo())
+            .replace(R.id.fragment_layout, FRAGMENT_TWO)
             .commitNow()
     }
 
