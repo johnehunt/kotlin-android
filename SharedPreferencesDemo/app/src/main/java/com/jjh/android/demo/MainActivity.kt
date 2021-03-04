@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,8 +24,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // val defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+
         sharedpreferences = getSharedPreferences(PREF_FILE,
-                Context.MODE_PRIVATE);
+                Context.MODE_PRIVATE)
 
         if (sharedpreferences.contains(NAME_KEY)) {
             (nameEditText as TextView).text = sharedpreferences.getString(NAME_KEY, "")
@@ -48,8 +52,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getHandler(view: View) {
-        sharedpreferences = getSharedPreferences(PREF_FILE,
-                MODE_PRIVATE)
         if (sharedpreferences.contains(NAME_KEY)) {
             (nameEditText as TextView).text = sharedpreferences.getString(NAME_KEY, "")
         }
