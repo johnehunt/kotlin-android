@@ -20,6 +20,11 @@ class FragmentOne : Fragment() {
         return inflater.inflate(R.layout.fragment_one, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated()")
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         Log.d(TAG, "onDestroyView()")
