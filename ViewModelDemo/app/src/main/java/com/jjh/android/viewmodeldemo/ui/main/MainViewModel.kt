@@ -2,6 +2,10 @@ package com.jjh.android.viewmodeldemo.ui.main
 
 import androidx.lifecycle.ViewModel
 
+/**
+ * ViewModel to use with MainFragment.
+ * Hold data and functionality in the ViewModel.
+ */
 class MainViewModel : ViewModel() {
 
     companion object {
