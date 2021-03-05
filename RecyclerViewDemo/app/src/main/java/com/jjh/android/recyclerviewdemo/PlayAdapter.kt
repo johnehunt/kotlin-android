@@ -28,7 +28,7 @@ class PlayAdapter : RecyclerView.Adapter<PlayViewHolder>() {
     }
 
     /**
-     * Called by RecyclerView to display the playviewholder at the specified position.
+     * Called by RecyclerView to display the PlayViewHolder at the specified position.
      */
     override fun onBindViewHolder(holder: PlayViewHolder, position: Int) {
         Log.d(TAG, "onBindViewHolder($position)")

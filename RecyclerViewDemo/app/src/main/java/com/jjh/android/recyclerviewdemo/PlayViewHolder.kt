@@ -7,7 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * View used to display information about a play
+ * View used to display information about a play.
+ * Note attachToRoot indicates true - attached to parent view now otherwise doing it later
+ * when the holder is actually added to the parent view
  */
 class PlayViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.play_list_item, parent, false)) {
