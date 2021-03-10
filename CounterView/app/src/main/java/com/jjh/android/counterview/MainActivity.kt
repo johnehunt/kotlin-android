@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    // Instance variables to hold reference to counter
+    // Properties to hold reference to counter
     // and text view (label) used to display the count
     private var text: TextView? = null
     private var count = 0
