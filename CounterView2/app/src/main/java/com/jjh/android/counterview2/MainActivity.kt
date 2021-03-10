@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate")
         setContentView(R.layout.activity_main)
 
-        // Using Android extensions to access countView
+        // Using Android Kotlin extensions to access countView
         countView.text = countValue.toString()
     }
 
