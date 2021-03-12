@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     fun onFragmentOneButtonClick(v: View) {
         Log.d(TAG, "onClick()")
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_layout, FRAGMENT_ONE)
+        transaction.replace(R.id.fragmentLayout, FRAGMENT_ONE)
         transaction.commit()
     }
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         // Uses flow style behaviour for concise code
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_layout, FRAGMENT_TWO)
+            .replace(R.id.fragmentLayout, FRAGMENT_TWO)
             .commitNow()
     }
 
