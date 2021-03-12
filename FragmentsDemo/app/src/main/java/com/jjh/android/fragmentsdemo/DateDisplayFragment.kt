@@ -14,15 +14,9 @@ import java.util.Date
 import kotlinx.android.synthetic.main.fragment_date_display.*
 
 class DateDisplayFragment : Fragment() {
+
     companion object {
         private const val TAG = "DateDisplayFragment"
-    }
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        Log.d(TAG, "onCreateView()")
-        return inflater.inflate(R.layout.fragment_date_display, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -33,6 +27,15 @@ class DateDisplayFragment : Fragment() {
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         Log.d(TAG, "onCreate()")
+    }
+
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              state: Bundle?): View? {
+        Log.d(TAG, "onCreateView()")
+        return inflater.inflate(R.layout.fragment_date_display,
+                                container,
+                    false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
