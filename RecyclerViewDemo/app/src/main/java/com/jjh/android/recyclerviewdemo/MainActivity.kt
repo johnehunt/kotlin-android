@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         // Access RecyclerView element and set up layout and adapter
-        play_recycler_view.apply {
+        playRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = PlayAdapter()
         }

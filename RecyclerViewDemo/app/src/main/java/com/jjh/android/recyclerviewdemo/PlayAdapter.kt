@@ -22,7 +22,7 @@ class PlayAdapter : RecyclerView.Adapter<PlayViewHolder>() {
      * a new Play.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayViewHolder {
-        Log.d(TAG, "onCreateViewHolder()")
+        Log.d(TAG, "onCreateViewHolder($viewType)")
         val inflater = LayoutInflater.from(parent.context)
         return PlayViewHolder(inflater, parent)
     }

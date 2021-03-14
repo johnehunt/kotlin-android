@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
  * when the holder is actually added to the parent view
  */
 class PlayViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.play_list_item, parent, false)) {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.play_list_item,
+                            parent, false)) {
 
     companion object {
         private const val TAG = "PlayViewHolder"
