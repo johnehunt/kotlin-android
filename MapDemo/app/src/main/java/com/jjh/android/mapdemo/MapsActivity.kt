@@ -5,11 +5,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
+import com.google.android.gms.maps.model.*
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListener {
@@ -61,15 +58,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
                 .position(latAndLong)
                 .title("Marker in London")
                 .snippet("Capital City of UK")
-//                .icon(
-//                    BitmapDescriptorFactory
-//                        .fromResource(R.drawable.ic_launcher)
-//                )
+                .icon(
+                    BitmapDescriptorFactory
+                        .fromResource(R.drawable.ic_launcher)
+                )
         )
 
-        // Changing the Google View
-        map.moveCamera(CameraUpdateFactory.newLatLng(latAndLong))
-        map.animateCamera(CameraUpdateFactory.zoomIn())
+        // Changing the Map position and zoom
+        val cameraPosition = CameraPosition.Builder().target(latAndLong).zoom(9f).build()
+        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
 
         // Construct a CameraPosition focusing on Mountain View and animate the camera to that position.
 //        val cameraPosition = CameraPosition.Builder()
@@ -96,7 +93,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         clickCount?.apply{
             val clicks = this + 1
             marker.tag = clicks
-            Toast.makeText(this@MapsActivity,
+            Toast.makeText(
+                this@MapsActivity,
                 "${marker.title} has been clicked $clicks times",
                 Toast.LENGTH_SHORT
             ).show()
