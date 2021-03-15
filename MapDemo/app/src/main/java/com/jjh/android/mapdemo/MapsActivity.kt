@@ -50,19 +50,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
         // Turn on Compass
         map.uiSettings.isCompassEnabled = true
 
-        // Add a marker in Sydney and move the camera
-        //val latAndLong = LatLng(-33.852, 151.211)
+        // Add a marker in London and move the camera
+        //val latAndLong = LatLng(-33.852, 151.211) // Sydney
         val latAndLong = LatLng(51.5074, 0.1278)
         val marker = map.addMarker(
             MarkerOptions()
                 .position(latAndLong)
                 .title("Marker in London")
                 .snippet("Capital City of UK")
-                .icon(
-                    BitmapDescriptorFactory
-                        .fromResource(R.drawable.ic_launcher)
-                )
-        )
+                .icon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.ic_launcher)))
+        // Set up some data to use with the marker
+        marker.tag = 0
 
         // Changing the Map position and zoom
         val cameraPosition = CameraPosition.Builder().target(latAndLong).zoom(9f).build()
@@ -76,8 +75,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, OnMarkerClickListe
 //            .tilt(30f) // Sets the tilt of the camera to 30 degrees
 //            .build() // Creates a CameraPosition from the builder
 
-        // Set up some data to use with the marker
-        marker.tag = 0
+
         // Set up a listener for marker clicks
         map.setOnMarkerClickListener(this)
 
