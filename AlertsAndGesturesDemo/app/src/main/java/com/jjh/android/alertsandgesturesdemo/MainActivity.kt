@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             val msg = "CANCEL $button"
             message.text = msg
         }
-        builder.setNegativeButton("NO") { dialog, button ->
+        builder.setNegativeButton("No") { dialog, button ->
             val msg = "NO $button"
             message.text = msg
         }
@@ -59,19 +59,15 @@ class MainActivity : AppCompatActivity() {
         val datePickerListener =
             OnDateSetListener { view, selectedYear, selectedMonth, selectedDay ->
                 // when dialog box is closed, below method will be called.
-                val toast = Toast.makeText(
+                Toast.makeText(
                     this,
                     "selected $selectedYear, $selectedMonth, $selectedDay",
-                    Toast.LENGTH_LONG
-                )
-                toast.show()
+                    Toast.LENGTH_LONG).show()
             }
-        val datePickerDialog = DatePickerDialog(
+        DatePickerDialog(
             this,
             datePickerListener,
-            2021, 3, 12
-        )
-        datePickerDialog.show()
+            2021, 2, 14).show()
     }
 
     fun showTimePicker(view: View) {
@@ -80,18 +76,17 @@ class MainActivity : AppCompatActivity() {
         val minute = c[Calendar.MINUTE]
 
         // Launch Time Picker Dialog
-        val timePickerDialog = TimePickerDialog(
+        TimePickerDialog(
             this,
             OnTimeSetListener { view, selectedHour, selectedMinute ->
-                val toast = Toast.makeText(
+                Toast.makeText(
                     this,
                     "selected $selectedHour:$selectedMinute",
                     Toast.LENGTH_LONG
-                )
-                toast.show()
-            }, hour, minute, false
-        )
-        timePickerDialog.show()
+                ).show()
+            },
+            hour,
+            minute, true).show()
     }
 
 }
