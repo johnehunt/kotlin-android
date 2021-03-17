@@ -8,43 +8,54 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.jjh.android.viewmodel2demo.R
-import kotlinx.android.synthetic.main.main_fragment.*
+
+import com.jjh.android.viewmodel2demo.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
     companion object {
         private const val TAG = "MainFragment"
     }
-
     private val viewModel by viewModels<MainViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    private var _binding: MainFragmentBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreateView")
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated")
 
-//        val resultObserver = Observer<Double> { value -> dollarTextView.text = "$%.2f".format(value) }
+//        val resultObserver = Observer<Double> { value -> binding.dollarTextView.text = "$%.2f".format(value) }
 //        // viewLifecycleOwner inherited from Fragment
 //        viewModel.dollarValue.observe(viewLifecycleOwner, resultObserver)
 
         // Shorthand form - sets up one way data binding
         viewModel.dollarValue
                  .observe(viewLifecycleOwner) {
-                     dollarTextView.text = "$%.2f".format(it)
+                     binding.dollarTextView.text = "$%.2f".format(it)
                  }
 
-        convertButton.setOnClickListener {
+        binding.convertButton.setOnClickListener {
             Log.d(TAG, "convertButton click handler")
-            if (sterlingEditText.text.isNotEmpty()) {
-                viewModel.sterlingValue = sterlingEditText.text.toString()
+            if (binding.sterlingEditText.text.isNotEmpty()) {
+                viewModel.sterlingValue = binding.sterlingEditText.text.toString()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
