@@ -12,8 +12,6 @@ import com.jjh.android.fragmentsdemo.databinding.FragmentDateDisplayBinding
 
 import java.util.Date
 
-
-
 class DateDisplayFragment : Fragment() {
 
     companion object {
