@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.jjh.android.dynamicfragmentdemo.databinding.FragmentOneBinding
 
 class FragmentOne : Fragment() {
 
@@ -16,8 +17,10 @@ class FragmentOne : Fragment() {
 
     init {
         Log.d(TAG, "init{}")
-
     }
+
+    private var _binding: FragmentOneBinding? = null
+    private val binding get() = _binding!!
 
     // On callback methods - defined in order called
     override fun onAttach(context: Context) {
@@ -30,7 +33,8 @@ class FragmentOne : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         Log.d(TAG, "onCreateView()")
-        return inflater.inflate(R.layout.fragment_one, container, false)
+        _binding = FragmentOneBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,6 +50,7 @@ class FragmentOne : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         Log.d(TAG, "onDestroyView()")
+        _binding = null
     }
 
 }

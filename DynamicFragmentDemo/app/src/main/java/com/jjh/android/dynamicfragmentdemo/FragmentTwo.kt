@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.jjh.android.dynamicfragmentdemo.databinding.FragmentOneBinding
+import com.jjh.android.dynamicfragmentdemo.databinding.FragmentTwoBinding
 
 class FragmentTwo : Fragment() {
 
@@ -18,6 +20,9 @@ class FragmentTwo : Fragment() {
         Log.d(TAG, "init{}")
     }
 
+    private var _binding: FragmentTwoBinding? = null
+    private val binding get() = _binding!!
+
     // On callback methods - defined in order called
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -28,7 +33,8 @@ class FragmentTwo : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         Log.d(TAG, "onCreateView()")
-        return inflater.inflate(R.layout.fragment_two, container, false)
+        _binding = FragmentTwoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,6 +50,7 @@ class FragmentTwo : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         Log.d(TAG, "onDestroyView()")
+        _binding = null
     }
 
 }
