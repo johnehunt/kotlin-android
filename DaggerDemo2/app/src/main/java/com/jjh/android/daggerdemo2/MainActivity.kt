@@ -8,6 +8,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
+
   companion object {
     private const val TAG = "DaggerDemo"
   }

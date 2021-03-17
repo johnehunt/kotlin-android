@@ -17,13 +17,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Boiler plate code for setting up gestures
         // Setup Gesture Handler
         val handler = GestureHandler()
         val detector = GestureDetectorCompat(this, handler)
         detector.setOnDoubleTapListener(handler)
 
         // Set up Image with Gesture Handler
-        image.setOnTouchListener { v, event -> detector.onTouchEvent(event) }
+        image.setOnTouchListener { view, event -> detector.onTouchEvent(event) }
 
         /**
          * Uncomment to try out pinch gesture
