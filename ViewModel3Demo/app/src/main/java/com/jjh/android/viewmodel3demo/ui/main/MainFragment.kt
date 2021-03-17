@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.jjh.android.viewmodel3demo.R
 import com.jjh.android.viewmodel3demo.databinding.MainFragmentBinding
 import com.jjh.android.viewmodel3demo.BR.myViewModel

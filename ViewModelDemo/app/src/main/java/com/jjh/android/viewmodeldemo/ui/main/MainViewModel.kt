@@ -12,13 +12,13 @@ class MainViewModel : ViewModel() {
         private const val sterlingToDollarRate = 1.38
     }
 
-    var result: Double = 0.0
+    var dollarValue: Double = 0.0
        private set
 
-    var amount: String
-        get() = result.toString()
+    var sterlingValue: String
+        get() = dollarValue.toString()
         set(value) {
-            result = value.toDouble() * sterlingToDollarRate
+            dollarValue = value.toDouble() * sterlingToDollarRate
         }
 
 }

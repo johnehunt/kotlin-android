@@ -24,13 +24,13 @@
             android:ems="10"
             android:hint="@string/to_convert"
             android:inputType="numberDecimal"
-            android:text="@={myViewModel.dollarValue}" />
+            android:text="@={myViewModel.sterlingValue}" /> <!-- Two way data binding -->
 
         <TextView
             android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{safeUnbox(myViewModel.result) == 0.0 ? "Enter value" : String.valueOf(safeUnbox(myViewModel.result)) + " dollars"}' />
+            android:text='@{safeUnbox(myViewModel.dollarvalue) == 0.0 ? "Enter value" : String.valueOf(safeUnbox(myViewModel.dollarvalue)) + " dollars"}' />
 
         <Button
             android:id="@+id/convertButton"

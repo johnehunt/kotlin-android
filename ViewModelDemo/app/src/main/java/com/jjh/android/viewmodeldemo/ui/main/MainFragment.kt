@@ -17,7 +17,9 @@ class MainFragment : Fragment() {
         private const val TAG = "MainFragment"
     }
 
+    // Older style define property as lateinit
     // private lateinit var viewModel: MainViewModel
+
     private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -34,13 +36,13 @@ class MainFragment : Fragment() {
         // Older style of access to view model
         // viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        dollarTextView.text = "$%.2f".format(viewModel.result)
+        dollarTextView.text = "$%.2f".format(viewModel.dollarValue)
 
         convertButton.setOnClickListener {
             Log.d(TAG, "convertButton click handler")
             if (sterlingEditText.text.isNotEmpty()) {
-                viewModel.amount = sterlingEditText.text.toString()
-                dollarTextView.text = "$%.2f".format(viewModel.result)
+                viewModel.sterlingValue = sterlingEditText.text.toString()
+                dollarTextView.text = "$%.2f".format(viewModel.dollarValue)
             } else {
                 dollarTextView.text = "No Value"
             }
