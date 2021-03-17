@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onSaveInstanceState()")
     }
 
+    // Further lifecycle member functions
     override fun onStart() {
         super.onStart()
         Log.d(TAG, "onStart()")
