@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import com.jjh.android.viewmodel3demo.R
 import com.jjh.android.viewmodel3demo.databinding.MainFragmentBinding
 import com.jjh.android.viewmodel3demo.BR.myViewModel
 
@@ -27,7 +25,7 @@ class MainFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         Log.d(TAG, "onCreateView")
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
+        binding = MainFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
         return binding.root
