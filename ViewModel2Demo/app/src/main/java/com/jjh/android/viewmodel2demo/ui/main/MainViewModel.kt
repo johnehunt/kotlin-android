@@ -9,13 +9,13 @@ class MainViewModel : ViewModel() {
         private const val sterlingToDollarRate = 1.28
     }
 
-    var result: MutableLiveData<Double> = MutableLiveData()
+    var dollarValue: MutableLiveData<Double> = MutableLiveData()
         private set
 
-    var amount: String
-        get() = result.toString()
+    var sterlingValue: String
+        get() = dollarValue.toString()
         set(value) {
-            result.value = value.toDouble() * sterlingToDollarRate
+            dollarValue.value = value.toDouble() * sterlingToDollarRate
         }
 
 }

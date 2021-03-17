@@ -29,14 +29,20 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated")
 
-        val resultObserver = Observer<Double> { value -> dollarTextView.text = "$%.2f".format(value) }
-        // viewLifecycleOwner inherited from Fragment
-        viewModel.result.observe(viewLifecycleOwner, resultObserver)
+//        val resultObserver = Observer<Double> { value -> dollarTextView.text = "$%.2f".format(value) }
+//        // viewLifecycleOwner inherited from Fragment
+//        viewModel.dollarValue.observe(viewLifecycleOwner, resultObserver)
+
+        // Shorthand form - sets up one way data binding
+        viewModel.dollarValue
+                 .observe(viewLifecycleOwner) {
+                     dollarTextView.text = "$%.2f".format(it)
+                 }
 
         convertButton.setOnClickListener {
             Log.d(TAG, "convertButton click handler")
             if (sterlingEditText.text.isNotEmpty()) {
-                viewModel.amount = sterlingEditText.text.toString()
+                viewModel.sterlingValue = sterlingEditText.text.toString()
             }
         }
     }
