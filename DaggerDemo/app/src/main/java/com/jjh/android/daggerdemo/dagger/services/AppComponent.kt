@@ -5,10 +5,9 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-  modules = [
+  modules = [  // Where we will find the types to inject
     UserServiceModule::class,
-    ShoppingServiceModule::class]
-)
+    ShoppingServiceModule::class])
 interface AppComponent {
-  fun inject(main: Main)
+  fun inject(main: Main)  // Says what we will inject into
 }

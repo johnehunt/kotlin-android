@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate")
 
+        // application is an inherited property
         Log.d(TAG, "onCreate - Triggering Dagger to inject into the Activity")
         (application as MyApplication).appComponent.inject(this)
 

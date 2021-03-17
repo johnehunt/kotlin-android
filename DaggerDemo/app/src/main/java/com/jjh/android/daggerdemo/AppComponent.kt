@@ -24,6 +24,7 @@ interface AppComponent {
 
     // Classes that can have dependencies injected by this Component
     fun inject(activity: MainActivity)
+
 }
 
 
