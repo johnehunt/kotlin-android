@@ -27,22 +27,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(returnedRequestCode: Int,
-                                  resultCode: Int,
+                                  activityCmpletedStatus: Int,
                                   data: Intent?) {
-        super.onActivityResult(returnedRequestCode, resultCode, data)
+        super.onActivityResult(returnedRequestCode, activityCmpletedStatus, data)
         // use requestCode to find out who is talking to us
         if (returnedRequestCode == REQUEST_CODE) {
             // 222 is our friendly contact-picker activity
-            if (resultCode == Activity.RESULT_OK) {
-                data?.run{
+            if (activityCmpletedStatus == Activity.RESULT_OK) {
+                data?.run {
                     val selectedContact = this.dataString
+
                     // it will return an URI that looks like:
                     // content://contacts/people/n where n is the selected contacts' ID
                     label.text = selectedContact
                 }
             } else {
                 // user pressed the BACK button
-                label.text = "Selection CANCELLED $returnedRequestCode, $resultCode"
+                label.text = "Selection CANCELLED $returnedRequestCode, $activityCmpletedStatus"
             }
         }
     }
