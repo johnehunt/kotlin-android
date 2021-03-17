@@ -8,16 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jjh.android.fragmentsdemo.databinding.FragmentDateDisplayBinding
 
 import java.util.Date
 
-import kotlinx.android.synthetic.main.fragment_date_display.*
+
 
 class DateDisplayFragment : Fragment() {
 
     companion object {
         private const val TAG = "DateDisplayFragment"
     }
+
+    private var _binding: FragmentDateDisplayBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -33,16 +39,15 @@ class DateDisplayFragment : Fragment() {
                               container: ViewGroup?,
                               state: Bundle?): View? {
         Log.d(TAG, "onCreateView()")
-        return inflater.inflate(R.layout.fragment_date_display,
-                                container,
-                    false)
+        _binding = FragmentDateDisplayBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated()")
         val time = SimpleDateFormat("dd MM yyyy HH:mm:ss").format(Date())
-        textView.text = time
+        binding.textView.text = time
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -53,6 +58,7 @@ class DateDisplayFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         Log.d(TAG, "onDestroyView()")
+        _binding = null
     }
 
 }
