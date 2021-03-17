@@ -17,14 +17,14 @@ class MainActivity : AppCompatActivity() {
     internal inner class AddButtonHandler : View.OnClickListener {
         override fun onClick(view: View) {
             count++
-            text!!.text = count.toString() + ""
+            text!!.text = count.toString()
         }
     }
 
     internal inner class SubtractButtonHandler : View.OnClickListener {
         override fun onClick(view: View) {
             count--
-            text!!.text = count.toString() + ""
+            text!!.text = count.toString()
         }
     }
 
