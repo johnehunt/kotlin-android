@@ -8,11 +8,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
-
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,12 +26,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate()")
+
         setContentView(R.layout.activity_main)
+
         // Set up link to toolbar view
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         // Set up floating action button to display Snackbar dialog
-        floating_action_button.setOnClickListener { view ->
+        val floatingActionButton = findViewById<FloatingActionButton>(R.id.floating_action_button)
+        floatingActionButton.setOnClickListener { view ->
             Snackbar.make(view, "Hi there", Snackbar.LENGTH_LONG)
                     .setAction("Action", null)
                     .show()
@@ -39,13 +44,16 @@ class MainActivity : AppCompatActivity() {
         // Set up navigation elements
         // Note Action Bar and App Bar as the same thing
         val navController = findNavController(R.id.navigation_fragment)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(R.id.home_menu_item,
                                                         R.id.gallery_menu_item,
                                                         R.id.slideshow_menu_item),
-                                                  drawer_layout)
+            drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        val nav_view = findViewById<NavigationView>(R.id.nav_view)
         nav_view.setupWithNavController(navController)
     }
 
