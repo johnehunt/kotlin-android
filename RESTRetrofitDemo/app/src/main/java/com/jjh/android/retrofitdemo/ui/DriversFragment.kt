@@ -38,6 +38,7 @@ class DriversFragment : Fragment() {
                               savedInstanceState: Bundle?): View {
         binding = DriversFragmentBinding.inflate(inflater, container, false)
         binding.button.setOnClickListener{onButtonClick()}
+        binding.textView.text = URL
         return binding.root
     }
 
