@@ -21,20 +21,20 @@
         android:onClick="onFragmentTwoButtonClick"
         android:text="@string/show_fragment_two" />
 
-    <LinearLayout
-        android:id="@+id/fragmentLayout"
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.jjh.android.dynamicfragmentdemo.FragmentOne"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
-        <fragment
-            android:id="@+id/fragment"
-            android:name="com.jjh.android.dynamicfragmentdemo.FragmentOne"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+    <!--        <fragment-->
+    <!--            android:id="@+id/fragment"-->
+    <!--            android:name="com.jjh.android.dynamicfragmentdemo.FragmentOne"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="1" />-->
 
-    </LinearLayout>
 
 </LinearLayout>
