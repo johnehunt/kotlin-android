@@ -7,11 +7,18 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/fragment"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
         android:name="com.jjh.android.fragmentsdemo.DateDisplayFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@android:layout/activity_list_item" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- Previous fragment style -->
+<!--    <fragment-->
+<!--        android:id="@+id/fragment"-->
+<!--        android:name="com.jjh.android.fragmentsdemo.DateDisplayFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:layout="@android:layout/activity_list_item" />-->
 
 </FrameLayout>
