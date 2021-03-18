@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -14,9 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 import com.jjh.android.retrofitdemo.model.Drivers
 import com.jjh.android.retrofitdemo.service.DriversService
-
-import kotlinx.android.synthetic.main.activity_main.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,10 +28,16 @@ class MainActivity : AppCompatActivity() {
         private const val URL = "http://ergast.com/"
     }
 
+    private lateinit var textView: TextView
+    private lateinit var editText: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
         setContentView(R.layout.activity_main)
+        editText = findViewById(R.id.editText)
+
+        textView = findViewById(R.id.textView)
         textView.text = URL
     }
 
@@ -48,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(TAG, "getDrivers - building Retrofit object")
         val httpClient = OkHttpClient()
+
         val retrofit = Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -72,9 +78,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<Drivers>, throwable: Throwable?) {
+            override fun onFailure(call: Call<Drivers>, throwable: Throwable) {
                 Log.d(TAG, "onFailure")
-                Log.d(TAG, throwable!!.message)
+                Log.d(TAG, throwable.message ?: "")
             }
         })
     }
