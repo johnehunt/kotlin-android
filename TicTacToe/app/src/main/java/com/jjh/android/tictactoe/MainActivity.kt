@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-import kotlinx.android.synthetic.main.activity_main.*
+import com.jjh.android.tictactoe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,11 +15,22 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
+    private lateinit var binding: ActivityMainBinding
     private var board: Board
 
     init {
         Log.d(TAG, "init()")
         board = Board()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "onCreate()")
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        // Disable restart
+        binding.restartButton.isEnabled = false
     }
 
     fun onButtonClick(view: View) {
@@ -32,12 +43,12 @@ class MainActivity : AppCompatActivity() {
             val player = board.humanPlayer
             var finished = checkGameStatus(player, buttonClicked)
             if (finished) {
-                restartButton.isEnabled = true
+                binding.restartButton.isEnabled = true
             } else {
                 val buttonSelected = makeComputerMove()
                 finished = checkGameStatus(board.computerPlayer, buttonSelected)
                 if (finished) {
-                    restartButton.isEnabled = true
+                    binding.restartButton.isEnabled = true
                 }
             }
         }
@@ -46,24 +57,16 @@ class MainActivity : AppCompatActivity() {
     fun onRestartButtonClick(v: View) {
         Log.d(TAG, "onRestartButtonClick")
         setupNewBoard()
-        button0.text = " "
-        button1.text = " "
-        button2.text = " "
-        button3.text = " "
-        button4.text = " "
-        button5.text = " "
-        button6.text = " "
-        button7.text = " "
-        button8.text = " "
-        restartButton.isEnabled = false
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(TAG, "onCreate()")
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        // Disable restart
-        restartButton.isEnabled = false
+        binding.button0.text = " "
+        binding.button1.text = " "
+        binding.button2.text = " "
+        binding.button3.text = " "
+        binding.button4.text = " "
+        binding.button5.text = " "
+        binding.button6.text = " "
+        binding.button7.text = " "
+        binding.button8.text = " "
+        binding.restartButton.isEnabled = false
     }
 
     private fun setupNewBoard() {
@@ -78,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "makeComputerMove()")
         val move = board.computerPlayerMakeMove()
         val tag = move.x.toString() + "," + move.y
-        val buttonSelected = mainLayout.findViewWithTag<Button>(tag)
+        val buttonSelected = binding.mainLayout.findViewWithTag<Button>(tag)
         buttonSelected.text = move.counter.toString()
         return buttonSelected
     }
