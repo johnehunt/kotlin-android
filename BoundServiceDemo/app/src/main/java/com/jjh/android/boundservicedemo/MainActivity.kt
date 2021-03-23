@@ -8,10 +8,9 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.jjh.android.boundservicedemo.BoundService.DemoBinder
-import kotlinx.android.synthetic.main.activity_main.*
+import com.jjh.android.boundservicedemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
+    private lateinit var binding: ActivityMainBinding
     private var service: BoundService? = null
 
     /** Defines callbacks for service binding, passed to bindService()  */
@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate()")
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     fun onStartServiceButtonClick(v: View) {
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     fun onPrintDataButtonClick(v: View) {
         Log.d(TAG, "onPrintDataButtonClick()")
         service?.let{
-            message.text = it.date.toString()
+            binding.message.text = it.date.toString()
         }
     }
 
